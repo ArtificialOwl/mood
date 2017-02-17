@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>socialcloud</id>
+	<name>Social Cloud</name>
+	<summary>Social Cloud</summary>
+	<description>Social Cloud</description>
+	<version>0.0.1</version>
+	<licence>agpl</licence>
+	<author>Maxence Lange</author>
+	<documentation>
+		<admin>https://github.com/nextcloud-gmbh/socialcloud/wiki</admin>
+	</documentation>
+	<category>social</category>
+	<website>https://github.com/nextcloud-gmbh/socialcloud</website>
+	<bugs>https://github.com/nextcloud-gmbh/socialcloud/issues</bugs>
+	<repository type="git">https://github.com/nextcloud-gmbh/socialcloud.git</repository>
+	<!--<screenshot>https://raw.githubusercontent.com/nextcloud-gmbh/circles/master/screenshots/circlespng</screenshot>-->
+	<dependencies>
+		<nextcloud min-version="11" max-version="12"/>
+	</dependencies>
+</info>
