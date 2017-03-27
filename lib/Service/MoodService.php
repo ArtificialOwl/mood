@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Social Cloud
  *
@@ -26,32 +27,46 @@
  *
  */
 
-script('socialcloud', 'social');
-
-script('socialcloud', 'vendor/notyf');
-style('socialcloud', 'notyf');
-
-script('socialcloud', 'social.app.elements');
-script('socialcloud', 'social.app.actions');
-script('socialcloud', 'social.app.navigation');
-script('socialcloud', 'social.app');
-
-style('socialcloud', 'navigate');
-?>
+namespace OCA\Socialcloud\Service;
 
 
-<div id="app-navigation">
-	<div class="navigation-element">
-		<input id="social_post" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
-	</div>
-	<div id="circles_list"></div>
-</div>
+use OCA\Shares\Exceptions\MoodUnknownType;
 
-<div id="app-content">
-	<div id="emptycontent">
-		<div class="icon-social"></div>
-		<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
-	</div>
+class MoodService {
 
-	<div id="loading_members" class="icon-loading hidden"></div>
-</div>
+	private $httpService;
+	private $miscService;
+
+	public function __construct(HttpService $httpService, MiscService $miscService) {
+		$this->httpService = $httpService;
+		$this->miscService = $miscService;
+	}
+
+
+	public function createMood($mood, $shares) {
+
+		$share = $this->shareMood($mood, $shares);
+
+		return $share;
+	}
+
+
+	public function createMoodText($text) {
+	}
+
+
+	public function createMoodUrl($url) {
+		try {
+			return $this->httpService->getMetaFromWebsite($url);
+		} catch (\Exception $e) {
+			throw $e;
+		}
+	}
+
+
+	public function shareMood($data, $shares) {
+
+		return true;
+	}
+
+}

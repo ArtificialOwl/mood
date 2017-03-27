@@ -28,9 +28,12 @@
 namespace OCA\Socialcloud\AppInfo;
 
 use \OCA\Socialcloud\Controller\NavigationController;
+use OCA\Socialcloud\Controller\ToolsController;
 use \OCA\Socialcloud\Service\ConfigService;
 
+use OCA\Socialcloud\Service\HttpService;
 use \OCA\Socialcloud\Service\MiscService;
+use OCA\Socialcloud\Service\MoodService;
 use OCP\AppFramework\App;
 use OCP\Util;
 
@@ -52,14 +55,14 @@ class Application extends App {
 		 * Services
 		 */
 		$container->registerService(
-			'MiscService', function ($c) {
+			'MiscService', function($c) {
 			return new MiscService($c->query('Logger'), $c->query('AppName'));
 		}
 		);
 
 
 		$container->registerService(
-			'ConfigService', function ($c) {
+			'ConfigService', function($c) {
 			return new ConfigService(
 				$c->query('AppName'), $c->query('CoreConfig'), $c->query('UserId'),
 				$c->query('MiscService')
@@ -67,14 +70,21 @@ class Application extends App {
 		}
 		);
 
-//		$container->registerService(
-//			'ApiService', function ($c) {
-//			return new ApiService(
-//				$c->query('ConfigService'), $c->query('FileService'), $c->query('MiscService')
-//			);
-//		}
-//		);
+		$container->registerService(
+			'MoodService', function($c) {
+			return new MoodService(
+				$c->query('HttpService'), $c->query('MiscService')
+			);
+		}
+		);
 
+		$container->registerService(
+			'HttpService', function($c) {
+			return new HttpService(
+				$c->query('MiscService')
+			);
+		}
+		);
 
 		/**
 		 * Controllers
@@ -89,10 +99,21 @@ class Application extends App {
 //		);
 
 		$container->registerService(
-			'NavigationController', function ($c) {
+			'NavigationController', function($c) {
 			return new NavigationController(
 				$c->query('AppName'), $c->query('Request'), $c->query('UserId'), $c->query('L10N'),
-				$c->query('ConfigService'),
+				$c->query('MoodService'),
+				$c->query('MiscService')
+			);
+		}
+		);
+
+
+		$container->registerService(
+			'ToolsController', function($c) {
+			return new ToolsController(
+				$c->query('AppName'), $c->query('Request'), $c->query('UserId'), $c->query('L10N'),
+				$c->query('HttpService'),
 				$c->query('MiscService')
 			);
 		}
@@ -113,7 +134,7 @@ class Application extends App {
 
 		// Translates
 		$container->registerService(
-			'L10N', function ($c) {
+			'L10N', function($c) {
 			return $c->query('ServerContainer')
 					 ->getL10N($c->query('AppName'));
 		}
@@ -123,20 +144,20 @@ class Application extends App {
 		 * Core
 		 */
 		$container->registerService(
-			'Logger', function ($c) {
+			'Logger', function($c) {
 			return $c->query('ServerContainer')
 					 ->getLogger();
 		}
 		);
 		$container->registerService(
-			'CoreConfig', function ($c) {
+			'CoreConfig', function($c) {
 			return $c->query('ServerContainer')
 					 ->getConfig();
 		}
 		);
 
 		$container->registerService(
-			'UserId', function ($c) {
+			'UserId', function($c) {
 			$user = $c->query('ServerContainer')
 					  ->getUserSession()
 					  ->getUser();
@@ -146,7 +167,7 @@ class Application extends App {
 		);
 
 		$container->registerService(
-			'UserManager', function ($c) {
+			'UserManager', function($c) {
 			return $c->query('ServerContainer')
 					 ->getUserManager();
 		}
@@ -160,7 +181,7 @@ class Application extends App {
 			 ->getServer()
 			 ->getNavigationManager()
 			 ->add(
-				 function () {
+				 function() {
 					 return [
 						 'id'    => $this->appName,
 						 'order' => 5,

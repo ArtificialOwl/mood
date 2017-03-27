@@ -27,6 +27,10 @@
 
 return [
 	'routes' => [
-		['name' => 'Navigation#navigate', 'url' => '/', 'verb' => 'GET']
-	],
+		['name' => 'Navigation#navigate', 'url' => '/', 'verb' => 'GET'],
+		['name' => 'Navigation#createMood', 'url' => '/social', 'verb' => 'PUT'],
+		['name' => 'Tools#dataFromUrl', 'url' => 'data/url', 'verb' => 'GET']
+	]
 ];
+
+

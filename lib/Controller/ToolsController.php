@@ -27,6 +27,7 @@
 
 namespace OCA\Socialcloud\Controller;
 
+use OCA\Socialcloud\Service\HttpService;
 use \OCA\Socialcloud\Service\MiscService;
 use \OCA\Socialcloud\Service\ConfigService;
 use OC\AppFramework\Http;
@@ -38,14 +39,14 @@ use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
 
-class NavigationController extends Controller {
+class ToolsController extends Controller {
 
 	/** @var string */
 	private $userId;
 	/** @var IL10N */
 	private $l10n;
-	/** @var MoodService */
-	private $moodService;
+	/** @var HttpService */
+	private $httpService;
 	/** @var MiscService */
 	private $miscService;
 
@@ -54,14 +55,14 @@ class NavigationController extends Controller {
 		IRequest $request,
 		$userId,
 		IL10N $l10n,
-		MoodService $moodService,
+		HttpService $httpService,
 		MiscService $miscService
 	) {
 		parent::__construct($appName, $request);
 
 		$this->userId = $userId;
 		$this->l10n = $l10n;
-		$this->moodService = $moodService;
+		$this->httpService = $httpService;
 		$this->miscService = $miscService;
 	}
 
@@ -69,66 +70,27 @@ class NavigationController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * @param $type
-	 * @param $entry
-	 * @param $shares
+	 * @param $url
 	 *
 	 * @return DataResponse
 	 */
-	public function createMood($data, $shares) {
+	public function dataFromUrl($url) {
 
+		$url =
+			'https://www.reddit.com/r/EarthPorn/comments/61pubm/the_arctic_is_the_perfect_place_to_go_for_a/';
 		try {
-			$result = $this->moodService->createMood($data, $shares);
+			$data = $this->httpService->getMetaFromWebsite($url);
 
-			return self::success(['data' => $data, 'result' => $result]);
+			return NavigationController::success(['url' => $url, 'result' => $data]);
 		} catch (\Exception $e) {
 			$error = $e->getMessage();
 		}
 
-		return self::fail(
-			['data' => $data, 'error' => $error]
+		return NavigationController::fail(
+			['url' => $url, 'error' => $error]
 		);
 
 
 	}
-
-
-	/**
-	 * @param $data
-	 *
-	 * @return DataResponse
-	 */
-	public static function fail($data) {
-		return new DataResponse(
-			array_merge($data, array('status' => 0)),
-			Http::STATUS_NON_AUTHORATIVE_INFORMATION
-		);
-	}
-
-	/**
-	 * @param $data
-	 *
-	 * @return DataResponse
-	 */
-	public static function success($data) {
-		return new DataResponse(
-			array_merge($data, array('status' => 1)),
-			Http::STATUS_CREATED
-		);
-	}
-
-
-	/**
-	 * @NoCSRFRequired
-	 * @NoAdminRequired
-	 *
-	 * @return TemplateResponse
-	 */
-	public function navigate() {
-		return new TemplateResponse(
-			'socialcloud', 'navigate', []
-		);
-	}
-
 
 }

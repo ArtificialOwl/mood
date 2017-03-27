@@ -1,0 +1,17 @@
+
+#app-navigation {
+	width: 300px;
+	border-right: 1px solid #ddd;
+}
+
+
+#app-navigation .navigation-element, #app-navigation .navigation-element option {
+	padding: 3px 12px;
+}
+
+#app-navigation input, #app-navigation select, #app-navigation option {
+	width: 100%;
+	box-sizing: border-box;
+	background: #ffffffaa !important;
+}
+

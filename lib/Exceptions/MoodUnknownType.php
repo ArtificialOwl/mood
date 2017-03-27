@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Social Cloud
+ * Circles - Bring cloud-users closer together.
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -23,35 +22,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
  */
 
-script('socialcloud', 'social');
+namespace OCA\Socialcloud\Exceptions;
 
-script('socialcloud', 'vendor/notyf');
-style('socialcloud', 'notyf');
+class MoodUnknownType extends \Exception {
 
-script('socialcloud', 'social.app.elements');
-script('socialcloud', 'social.app.actions');
-script('socialcloud', 'social.app.navigation');
-script('socialcloud', 'social.app');
+	public function __construct($message = "", $code = 0, \Exception $previous = null) {
+		parent::__construct($message, $code, $previous);
+	}
 
-style('socialcloud', 'navigate');
-?>
+}
 
-
-<div id="app-navigation">
-	<div class="navigation-element">
-		<input id="social_post" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
-	</div>
-	<div id="circles_list"></div>
-</div>
-
-<div id="app-content">
-	<div id="emptycontent">
-		<div class="icon-social"></div>
-		<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
-	</div>
-
-	<div id="loading_members" class="icon-loading hidden"></div>
-</div>

@@ -1,7 +1,5 @@
-<?php
-
-/**
- * Social Cloud
+/*
+ * Circles - Bring cloud-users closer together.
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -23,35 +21,50 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
  */
 
-script('socialcloud', 'social');
+/** global: OC */
+/** global: OCA */
+/** global: Notyf */
 
-script('socialcloud', 'vendor/notyf');
-style('socialcloud', 'notyf');
-
-script('socialcloud', 'social.app.elements');
-script('socialcloud', 'social.app.actions');
-script('socialcloud', 'social.app.navigation');
-script('socialcloud', 'social.app');
-
-style('socialcloud', 'navigate');
-?>
+/** global: nav */
+/** global: elements */
+/** global: curr */
+/** global: api */
 
 
-<div id="app-navigation">
-	<div class="navigation-element">
-		<input id="social_post" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
-	</div>
-	<div id="circles_list"></div>
-</div>
+var actions = {
 
-<div id="app-content">
-	<div id="emptycontent">
-		<div class="icon-social"></div>
-		<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
-	</div>
+	onEventNewMood: function (mood, shares) {
+		this.newMood(mood, shares);
+	},
 
-	<div id="loading_members" class="icon-loading hidden"></div>
-</div>
+
+	onEventPastedMood: function (mood) {
+		console.log("___");
+		this.getDataFromUrl(mood);
+	},
+
+
+	newMood: function (mood, shares) {
+		api.createMood(mood, shares, actions.newMoodResult);
+	},
+
+
+	getDataFromUrl: function (url, shares) {
+		api.getDataFromUrl(url, actions.getDataFromUrlResult);
+	},
+
+
+	getDataFromUrlResult: function (result) {
+		console.log("_1_" + JSON.stringify(result));
+	},
+
+
+	newMoodResult: function (result) {
+		console.log("_2_" + JSON.stringify(result));
+	}
+
+};
+
+

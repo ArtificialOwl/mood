@@ -1,7 +1,5 @@
-<?php
-
-/**
- * Social Cloud
+/*
+ * Circles - Bring cloud-users closer together.
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -23,35 +21,43 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *
  */
 
-script('socialcloud', 'social');
+/** global: OC */
+/** global: OCA */
+/** global: Notyf */
 
-script('socialcloud', 'vendor/notyf');
-style('socialcloud', 'notyf');
-
-script('socialcloud', 'social.app.elements');
-script('socialcloud', 'social.app.actions');
-script('socialcloud', 'social.app.navigation');
-script('socialcloud', 'social.app');
-
-style('socialcloud', 'navigate');
-?>
+/** global: nav */
+/** global: actions */
+/** global: curr */
+/** global: api */
 
 
-<div id="app-navigation">
-	<div class="navigation-element">
-		<input id="social_post" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
-	</div>
-	<div id="circles_list"></div>
-</div>
+var elements = {
 
-<div id="app-content">
-	<div id="emptycontent">
-		<div class="icon-social"></div>
-		<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
-	</div>
+	newMood: null,
 
-	<div id="loading_members" class="icon-loading hidden"></div>
-</div>
+	initElements: function () {
+		elements.newMood = $('#social_post');
+	},
+
+
+	initUI: function () {
+		$('.icon-social').css('background-image',
+			'url(' + OC.imagePath('socialcloud', 'colored') + ')');
+	},
+
+
+	initExperienceSocialPost: function () {
+		elements.newMood.on('keypress', function (e) {
+			if (e.keyCode == 13) {
+				actions.onEventNewMood($(this).val());
+			}
+		});
+
+		elements.newMood.on('paste', function () {
+			actions.onEventPastedMood($(this).val());
+		});
+	}
+
+}
