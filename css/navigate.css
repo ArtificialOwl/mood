@@ -1,11 +1,11 @@
 
 #app-navigation {
-	width: 300px;
+	width: 400px;
 	border-right: 1px solid #ddd;
 }
 
-
 #app-navigation .navigation-element, #app-navigation .navigation-element option {
+	margin-top: 15px;
 	padding: 3px 12px;
 }
 
@@ -15,3 +15,20 @@
 	background: #ffffffaa !important;
 }
 
+#website_infos {
+}
+
+#emptycontent {
+	position: absolute;
+	z-index: -99;
+	left: 200px;
+}
+
+#website_infos .thumb {
+	width: auto;
+	max-width: 120px;
+	height: auto;
+	max-height: 120px;
+	float: left;
+	margin: 3px 15px 5px 3px;
+}

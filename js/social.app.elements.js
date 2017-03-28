@@ -36,14 +36,19 @@
 var elements = {
 
 	newMood: null,
+	websiteInfos: null,
 
 	initElements: function () {
-		elements.newMood = $('#social_post');
+		elements.newMood = $('#mood');
+		elements.websiteInfos = $('#website_infos');
 	},
 
 
 	initUI: function () {
-		$('.icon-social').css('background-image',
+
+		elements.websiteInfos.hide(0);
+
+		$('.icon-socialcloud').css('background-image',
 			'url(' + OC.imagePath('socialcloud', 'colored') + ')');
 	},
 
@@ -53,11 +58,15 @@ var elements = {
 			if (e.keyCode == 13) {
 				actions.onEventNewMood($(this).val());
 			}
+			curr.mood = '';
 		});
 
-		elements.newMood.on('paste', function () {
-			actions.onEventPastedMood($(this).val());
+		elements.newMood.on('paste', function (e) {
+			var pastedData = e.originalEvent.clipboardData.getData('text');
+			actions.onEventPastedMood(pastedData);
+
 		});
-	}
+	},
+
 
 }

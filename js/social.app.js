@@ -34,6 +34,7 @@
 
 var api = OCA.Social.api;
 var curr = {
+	mood: '',
 };
 
 
@@ -60,7 +61,6 @@ $(document).ready(function () {
 			elements.initUI();
 			elements.initExperienceSocialPost();
 			nav.initNavigation();
-
 		}
 	};
 

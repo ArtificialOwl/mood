@@ -42,16 +42,17 @@ style('socialcloud', 'navigate');
 
 <div id="app-navigation">
 	<div class="navigation-element">
-		<input id="social_post" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
+		<input id="mood" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
+		<input id="mood_submit" type="submit" value="Share your mood"/>
 	</div>
-	<div id="circles_list"></div>
+	<div id="website_infos"></div>
+
+</div>
+
+<div id="emptycontent">
+	<div class="icon-socialcloud"></div>
+	<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
 </div>
 
 <div id="app-content">
-	<div id="emptycontent">
-		<div class="icon-social"></div>
-		<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
-	</div>
-
-	<div id="loading_members" class="icon-loading hidden"></div>
 </div>

@@ -33,7 +33,9 @@ use \OCA\Socialcloud\Service\ConfigService;
 use OC\AppFramework\Http;
 use OCA\Socialcloud\Service\MoodService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\Http\FileDisplayResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IL10N;
 use OCP\ILogger;
@@ -76,12 +78,12 @@ class ToolsController extends Controller {
 	 */
 	public function dataFromUrl($url) {
 
-		$url =
-			'https://www.reddit.com/r/EarthPorn/comments/61pubm/the_arctic_is_the_perfect_place_to_go_for_a/';
+//		$url =
+//			'https://www.reddit.com/r/EarthPorn/comments/61pubm/the_arctic_is_the_perfect_place_to_go_for_a/';
 		try {
 			$data = $this->httpService->getMetaFromWebsite($url);
 
-			return NavigationController::success(['url' => $url, 'result' => $data]);
+			return NavigationController::success(['url' => $url, 'data' => $data]);
 		} catch (\Exception $e) {
 			$error = $e->getMessage();
 		}
@@ -89,6 +91,30 @@ class ToolsController extends Controller {
 		return NavigationController::fail(
 			['url' => $url, 'error' => $error]
 		);
+	}
+
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * @param $url
+	 *
+	 * @return DataDisplayResponse|DataResponse|FileDisplayResponse
+	 */
+	public function binFromExternalImage($url) {
+		try {
+
+			$image = HttpService::file_get_contents_curl($url, true);
+			$response =
+				new DataDisplayResponse(
+					$image, Http::STATUS_OK, ['Content-Type' => 'image/jpeg']
+				);
+
+			return $response;
+		} catch (\Exception $e) {
+			return new DataResponse([], Http::STATUS_NOT_FOUND);
+		}
 
 
 	}

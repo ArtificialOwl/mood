@@ -43,6 +43,20 @@ var nav = {
 	},
 
 
+	fillWebsiteInfos: function (infos) {
+		elements.websiteInfos.fadeIn(300);
 
+		elements.websiteInfos.empty();
+		if (infos.thumb !== '') {
+			elements.websiteInfos.append(
+				'<img class="thumb" src="' + api.localUrlOfExternalImage(infos.thumb) + '">');
+		}
+
+		var website = (infos.title === '') ? infos.website : ' (' + infos.website + ') ';
+		elements.websiteInfos.append('<b>' + infos.title + ' ' + website + '</b>');
+		elements.websiteInfos.append('<br /> ' + infos.description);
+
+		// elements.websiteInfos.find('.website').text(infos.website);
+	}
 };
 

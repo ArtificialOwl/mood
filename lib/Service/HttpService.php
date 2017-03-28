@@ -62,7 +62,7 @@ class HttpService {
 	}
 
 
-	public static function file_get_contents_curl($url) {
+	public static function file_get_contents_curl($url, $bin = false) {
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -70,12 +70,17 @@ class HttpService {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 
+
+		if ($bin === true) {
+			curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+		}
+
 		$data = curl_exec($ch);
+		curl_close($ch);
+
 		if ($data === false) {
 			throw new HttpRequestException();
 		}
-
-		curl_close($ch);
 
 		return $data;
 	}

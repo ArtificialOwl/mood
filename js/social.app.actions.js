@@ -41,7 +41,6 @@ var actions = {
 
 
 	onEventPastedMood: function (mood) {
-		console.log("___");
 		this.getDataFromUrl(mood);
 	},
 
@@ -51,13 +50,14 @@ var actions = {
 	},
 
 
-	getDataFromUrl: function (url, shares) {
+	getDataFromUrl: function (url) {
 		api.getDataFromUrl(url, actions.getDataFromUrlResult);
 	},
 
 
 	getDataFromUrlResult: function (result) {
-		console.log("_1_" + JSON.stringify(result));
+		if (result.status != 1) return;
+		nav.fillWebsiteInfos(result.data);
 	},
 
 

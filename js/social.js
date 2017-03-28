@@ -66,13 +66,19 @@
 					method: 'GET',
 					url: OC.generateUrl(OC.linkTo('socialcloud', 'data/url')),
 					data: {
-						url: url,
+						url: url
 					}
 				}).done(function (res) {
 					self.onCallback(callback, res);
 				}).fail(function () {
 					self.onCallback(callback, result);
 				});
+			};
+
+
+			this.localUrlOfExternalImage = function (url) {
+				return OC.generateUrl(OC.linkTo('socialcloud', 'data/image') + '?url=' +
+					encodeURIComponent(url));
 			};
 
 
