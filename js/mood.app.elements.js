@@ -48,12 +48,12 @@ var elements = {
 
 		elements.websiteInfos.hide(0);
 
-		$('.icon-socialcloud').css('background-image',
-			'url(' + OC.imagePath('socialcloud', 'colored') + ')');
+		$('.icon-mood').css('background-image',
+			'url(' + OC.imagePath('mood', 'colored') + ')');
 	},
 
 
-	initExperienceSocialPost: function () {
+	initExperienceMoodPost: function () {
 		elements.newMood.on('keypress', function (e) {
 			if (e.keyCode == 13) {
 				actions.onEventNewMood($(this).val());

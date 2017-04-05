@@ -1,6 +1,6 @@
 <?php
 /**
- * Social Cloud
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -28,7 +28,7 @@
 return [
 	'routes' => [
 		['name' => 'Navigation#navigate', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'Navigation#createMood', 'url' => '/social', 'verb' => 'PUT'],
+		['name' => 'Navigation#createMood', 'url' => '/mood', 'verb' => 'PUT'],
 		['name' => 'Tools#dataFromUrl', 'url' => 'data/url', 'verb' => 'GET'],
 		[
 			'name' => 'Tools#binFromExternalImage', 'url' => 'data/image', 'verb' => 'GET'

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Social Cloud
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -26,17 +26,17 @@
  *
  */
 
-script('socialcloud', 'social');
+script('mood', 'mood');
 
-script('socialcloud', 'vendor/notyf');
-style('socialcloud', 'notyf');
+script('mood', 'vendor/notyf');
+style('mood', 'notyf');
 
-script('socialcloud', 'social.app.elements');
-script('socialcloud', 'social.app.actions');
-script('socialcloud', 'social.app.navigation');
-script('socialcloud', 'social.app');
+script('mood', 'mood.app.elements');
+script('mood', 'mood.app.actions');
+script('mood', 'mood.app.navigation');
+script('mood', 'mood.app');
 
-style('socialcloud', 'navigate');
+style('mood', 'navigate');
 ?>
 
 
@@ -50,7 +50,7 @@ style('socialcloud', 'navigate');
 </div>
 
 <div id="emptycontent">
-	<div class="icon-socialcloud"></div>
+	<div class="icon-mood"></div>
 	<h2><?php p($l->t('No social cloud on the horizon')); ?></h2>
 </div>
 

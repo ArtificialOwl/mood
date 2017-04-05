@@ -32,11 +32,11 @@
 	/**
 	 * @constructs Circles
 	 */
-	var Social = function () {
+	var Mood = function () {
 		this.initialize();
 	};
 
-	Social.prototype = {
+	Mood.prototype = {
 
 
 		initialize: function () {
@@ -47,7 +47,7 @@
 				var result = {status: -1};
 				$.ajax({
 					method: 'PUT',
-					url: OC.generateUrl(OC.linkTo('socialcloud', 'social')),
+					url: OC.generateUrl(OC.linkTo('mood', 'mood')),
 					data: {
 						data: data,
 						shares: shares
@@ -64,7 +64,7 @@
 				var result = {status: -1};
 				$.ajax({
 					method: 'GET',
-					url: OC.generateUrl(OC.linkTo('socialcloud', 'data/url')),
+					url: OC.generateUrl(OC.linkTo('mood', 'data/url')),
 					data: {
 						url: url
 					}
@@ -77,7 +77,7 @@
 
 
 			this.localUrlOfExternalImage = function (url) {
-				return OC.generateUrl(OC.linkTo('socialcloud', 'data/image') + '?url=' +
+				return OC.generateUrl(OC.linkTo('mood', 'data/image') + '?url=' +
 					encodeURIComponent(url));
 			};
 
@@ -92,8 +92,8 @@
 		}
 	};
 
-	OCA.Social = Social;
-	OCA.Social.api = new Social();
+	OCA.Mood = Mood;
+	OCA.Mood.api = new Mood();
 
 })();
 

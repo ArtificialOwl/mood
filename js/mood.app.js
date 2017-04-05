@@ -32,7 +32,7 @@
 /** global: actions */
 /** global: elements */
 
-var api = OCA.Social.api;
+var api = OCA.Mood.api;
 var curr = {
 	mood: '',
 };
@@ -59,7 +59,7 @@ $(document).ready(function () {
 		init: function () {
 			elements.initElements();
 			elements.initUI();
-			elements.initExperienceSocialPost();
+			elements.initExperienceMoodPost();
 			nav.initNavigation();
 		}
 	};
@@ -93,8 +93,8 @@ $(document).ready(function () {
 
 	};
 
-	OCA.Social.Navigation = Navigation;
-	OCA.Social.navigation = new Navigation();
+	OCA.Mood.Navigation = Navigation;
+	OCA.Mood.navigation = new Navigation();
 
 	OCA.Notification = Notification;
 	OCA.notification = new Notification();

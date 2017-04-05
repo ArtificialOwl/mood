@@ -1,6 +1,6 @@
 <?php
 /**
- * Social Cloud
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -25,12 +25,12 @@
  *
  */
 
-namespace OCA\Socialcloud\Controller;
+namespace OCA\Mood\Controller;
 
-use \OCA\Socialcloud\Service\MiscService;
-use \OCA\Socialcloud\Service\ConfigService;
+use \OCA\Mood\Service\MiscService;
+use \OCA\Mood\Service\ConfigService;
 use OC\AppFramework\Http;
-use OCA\Socialcloud\Service\MoodService;
+use OCA\Mood\Service\MoodService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -126,7 +126,7 @@ class NavigationController extends Controller {
 	 */
 	public function navigate() {
 		return new TemplateResponse(
-			'socialcloud', 'navigate', []
+			'mood', 'navigate', []
 		);
 	}
 

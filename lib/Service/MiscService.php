@@ -1,6 +1,6 @@
 <?php
 /**
- * Social Cloud
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -25,7 +25,7 @@
  *
  */
 
-namespace OCA\Socialcloud\Service;
+namespace OCA\Mood\Service;
 
 use OCP\ILogger;
 

@@ -24,7 +24,7 @@
  *
  */
 
-namespace OCA\Socialcloud\Exceptions;
+namespace OCA\Mood\Exceptions;
 
 class MoodUnknownType extends \Exception {
 

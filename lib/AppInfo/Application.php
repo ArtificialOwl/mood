@@ -1,6 +1,6 @@
 <?php
 /**
- * Social Cloud
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -25,15 +25,15 @@
  *
  */
 
-namespace OCA\Socialcloud\AppInfo;
+namespace OCA\Mood\AppInfo;
 
-use \OCA\Socialcloud\Controller\NavigationController;
-use OCA\Socialcloud\Controller\ToolsController;
-use \OCA\Socialcloud\Service\ConfigService;
+use \OCA\Mood\Controller\NavigationController;
+use OCA\Mood\Controller\ToolsController;
+use \OCA\Mood\Service\ConfigService;
 
-use OCA\Socialcloud\Service\HttpService;
-use \OCA\Socialcloud\Service\MiscService;
-use OCA\Socialcloud\Service\MoodService;
+use OCA\Mood\Service\HttpService;
+use \OCA\Mood\Service\MiscService;
+use OCA\Mood\Service\MoodService;
 use OCP\AppFramework\App;
 use OCP\Util;
 
@@ -46,7 +46,7 @@ class Application extends App {
 	 * @param array $params
 	 */
 	public function __construct(array $params = array()) {
-		parent::__construct('socialcloud', $params);
+		parent::__construct('mood', $params);
 
 		$container = $this->getContainer();
 		$this->appName = $container->query('AppName');
@@ -192,11 +192,11 @@ class Application extends App {
 						 'id'    => $this->appName,
 						 'order' => 5,
 						 'href'  => \OC::$server->getURLGenerator()
-												->linkToRoute('socialcloud.Navigation.navigate'),
+												->linkToRoute('mood.Navigation.navigate'),
 						 'icon'  => \OC::$server->getURLGenerator()
-												->imagePath($this->appName, 'socialcloud.svg'),
+												->imagePath($this->appName, 'mood.svg'),
 						 'name'  => \OC::$server->getL10N($this->appName)
-												->t('Social Cloud')
+												->t('Mood')
 					 ];
 				 }
 			 );

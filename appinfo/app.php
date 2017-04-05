@@ -1,6 +1,6 @@
 <?php
 /**
- * Social Cloud
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -25,6 +25,6 @@
  *
  */
 
-$app = new \OCA\Socialcloud\AppInfo\Application();
+$app = new \OCA\Mood\AppInfo\Application();
 
 $app->registerNavigation();
