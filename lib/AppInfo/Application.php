@@ -172,6 +172,12 @@ class Application extends App {
 					 ->getUserManager();
 		}
 		);
+
+//		\OC::$server->getEventDispatcher()->addListener('OCA\Files::loadAdditionalScripts', function () {
+//			\OCP\Util::addScript('mood', 'navigate');
+//			\OCP\Util::addStyle('mood', 'navigate');
+//		});
+
 	}
 
 
