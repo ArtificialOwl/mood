@@ -39,20 +39,17 @@ var elements = {
 	websiteInfos: null,
 
 	initElements: function () {
-		elements.newMood = $('#mood');
-		elements.websiteInfos = $('#website_infos');
 		elements.ActivityHeader = null;
 
 		elements.moody = $('#moody');
+		elements.newMood = $('#mood');
+		elements.submitMood = $('#mood_submit');
+		elements.websiteInfos = $('#website_infos');
 	},
 
 
 	initUI: function () {
-
 		elements.websiteInfos.hide(0);
-
-		$('.icon-mood').css('background-image',
-			'url(' + OC.imagePath('mood', 'colored') + ')');
 
 		var theme = $('#body-user').find('#header').css('background-color');
 		elements.moody.css('background-color', theme);
@@ -62,16 +59,19 @@ var elements = {
 
 	initExperienceMoodPost: function () {
 		elements.newMood.on('keypress', function (e) {
-			if (e.keyCode == 13) {
-				actions.onEventNewMood($(this).val());
+			if (e.keyCode === 13) {
+				actions.onEventPostMood($(this).val());
 			}
-			curr.mood = '';
+		});
+
+		elements.submitMood.on('click', function (e) {
+			actions.onEventPostMood(elements.newMood.val());
+			return true;
 		});
 
 		elements.newMood.on('paste', function (e) {
 			var pastedData = e.originalEvent.clipboardData.getData('text');
 			actions.onEventPastedMood(pastedData);
-
 		});
 	},
 
@@ -84,14 +84,15 @@ var elements = {
 		var moodHtml = '';
 		moodHtml += '<div id="moody">';
 		moodHtml += '<div class="lightenbg"></div>';
-		moodHtml += ' <input class="mood_input" id="mood" type="text" placeholder="' + t('mood', 'New mood') + '">';
-		moodHtml += ' <input class="mood_input" id="mood_submit" type="submit" value="Share your mood"/>';
+		moodHtml += ' <input class="mood_input" id="mood" type="text" placeholder="' +
+			t('mood', 'New mood') + '">';
+		moodHtml +=
+			' <input class="mood_input" id="mood_submit" type="submit" value="Share your mood"/>';
 		moodHtml += '</div>';
 		moodHtml += '<div id="website_infos"></div>';
 
 		elements.ActivityHeader.prepend(moodHtml);
-
 	}
 
 
-}
+};

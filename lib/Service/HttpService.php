@@ -32,7 +32,7 @@ use OCA\Mood\Exceptions\HttpRequestException;
 
 class HttpService {
 
-
+	/** @var MiscService */
 	private $miscService;
 
 	/**

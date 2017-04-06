@@ -35,8 +35,13 @@
 
 var actions = {
 
-	onEventNewMood: function (mood, shares) {
-		this.newMood(mood, shares);
+	onEventPostMood: function (mood, shares) {
+		var mObj = {
+			'mood': mood,
+			'website': curr.websiteInfos,
+			'shares': shares
+		};
+		this.newMood(mObj);
 	},
 
 
@@ -45,8 +50,13 @@ var actions = {
 	},
 
 
-	newMood: function (mood, shares) {
-		api.createMood(mood, shares, actions.newMoodResult);
+	newMood: function (mObj) {
+		api.createMood(mObj, actions.newMoodResult);
+	},
+
+
+	newMoodResult: function (result) {
+		console.log("_2; " + JSON.stringify(result));
 	},
 
 
@@ -56,13 +66,8 @@ var actions = {
 
 
 	getDataFromUrlResult: function (result) {
-		if (result.status != 1) return;
+		if (result.status !== 1) return;
 		nav.fillWebsiteInfos(result.data);
-	},
-
-
-	newMoodResult: function (result) {
-		console.log("_2_" + JSON.stringify(result));
 	}
 
 };

@@ -1,31 +1,4 @@
 
-#app-navigation {
-	width: 400px;
-	border-right: 1px solid #ddd;
-}
-
-#app-navigation .navigation-element, #app-navigation .navigation-element option {
-	margin-top: 15px;
-	padding: 3px 12px;
-}
-
-#app-navigation input, #app-navigation select, #app-navigation option {
-	width: 100%;
-	box-sizing: border-box;
-	background: #ffffffaa !important;
-}
-
-#emptycontent {
-	position: absolute;
-	z-index: -99;
-	left: 200px;
-}
-
-/**
-*
-*
-*
-*/
 #moody, #moody .lightenbg {
 	height: 55px;
 }
@@ -61,7 +34,6 @@
 	-webkit-box-shadow: 3px 3px 1px #86868660;
 	box-shadow: 3px 3px 1px #86868660;
 }
-
 
 #moody .lightenbg {
 	width: 100%;

@@ -27,7 +27,7 @@
 
 namespace OCA\Mood\AppInfo;
 
-use \OCA\Mood\Controller\NavigationController;
+use \OCA\Mood\Controller\MoodController;
 use OCA\Mood\Controller\ToolsController;
 use \OCA\Mood\Service\ConfigService;
 
@@ -89,18 +89,9 @@ class Application extends App {
 		/**
 		 * Controllers
 		 */
-//		$container->registerService(
-//			'SettingsController', function ($c) {
-//			return new SettingsController(
-//				$c->query('AppName'), $c->query('Request'), $c->query('ConfigService'),
-//				$c->query('MiscService')
-//			);
-//		}
-//		);
-
 		$container->registerService(
-			'NavigationController', function($c) {
-			return new NavigationController(
+			'MoodController', function($c) {
+			return new MoodController(
 				$c->query('AppName'), $c->query('Request'), $c->query('UserId'), $c->query('L10N'),
 				$c->query('MoodService'),
 				$c->query('MiscService')
@@ -173,7 +164,10 @@ class Application extends App {
 		}
 		);
 
+	}
 
+
+	public function registerToActivity() {
 		\OC::$server->getEventDispatcher()
 					->addListener(
 						'OCA\Activity::loadAdditionalScripts', function($event) {
@@ -187,36 +181,5 @@ class Application extends App {
 					}
 					);
 	}
-
-
-	public function registerNavigation() {
-
-		$this->getContainer()
-			 ->getServer()
-			 ->getNavigationManager()
-			 ->add(
-				 function() {
-					 return [
-						 'id'    => $this->appName,
-						 'order' => 5,
-						 'href'  => \OC::$server->getURLGenerator()
-												->linkToRoute('mood.Navigation.navigate'),
-						 'icon'  => \OC::$server->getURLGenerator()
-												->imagePath($this->appName, 'mood.svg'),
-						 'name'  => \OC::$server->getL10N($this->appName)
-												->t('Mood')
-					 ];
-				 }
-			 );
-	}
-
-
-//
-//	public function registerSettingsAdmin() {
-//		\OCP\App::registerAdmin(
-//			$this->getContainer()
-//				 ->query('AppName'), 'lib/admin'
-//		);
-//	}
 }
 

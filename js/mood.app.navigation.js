@@ -25,7 +25,6 @@
 
 /** global: OC */
 /** global: OCA */
-/** global: Notyf */
 
 /** global: nav */
 /** global: elements */
@@ -38,13 +37,11 @@ var nav = {
 
 	initNavigation: function () {
 
-		// request circles for new post
-
 	},
 
 
 	fillWebsiteInfos: function (infos) {
-		elements.websiteInfos.fadeIn(300);
+		curr.websiteInfos = infos;
 
 		elements.websiteInfos.empty();
 		if (infos.thumb !== '') {
@@ -55,10 +52,8 @@ var nav = {
 		var website = (infos.title === '') ? infos.website : ' (' + infos.website + ') ';
 		elements.websiteInfos.append('<b>' + infos.title + ' ' + website + '</b>');
 		elements.websiteInfos.append('<br /> ' + infos.description);
-
-		// elements.websiteInfos.find('.website').text(infos.website);
-	},
-
+		elements.websiteInfos.fadeIn(400);
+	}
 
 };
 

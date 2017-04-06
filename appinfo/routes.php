@@ -27,8 +27,8 @@
 
 return [
 	'routes' => [
-		['name' => 'Navigation#navigate', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'Navigation#createMood', 'url' => '/mood', 'verb' => 'PUT'],
+//		['name' => 'Navigation#navigate', 'url' => '/', 'verb' => 'GET'],
+		['name' => 'Mood#create', 'url' => '/mood', 'verb' => 'PUT'],
 		['name' => 'Tools#dataFromUrl', 'url' => 'data/url', 'verb' => 'GET'],
 		[
 			'name' => 'Tools#binFromExternalImage', 'url' => 'data/image', 'verb' => 'GET'

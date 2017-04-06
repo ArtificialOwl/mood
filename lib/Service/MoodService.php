@@ -32,36 +32,33 @@ namespace OCA\Mood\Service;
 
 class MoodService {
 
+	/** @var HttpService */
 	private $httpService;
+
+	/** @var MiscService */
 	private $miscService;
 
+	/**
+	 * MoodService constructor.
+	 *
+	 * @param HttpService $httpService
+	 * @param MiscService $miscService
+	 */
 	public function __construct(HttpService $httpService, MiscService $miscService) {
 		$this->httpService = $httpService;
 		$this->miscService = $miscService;
 	}
 
 
-	public function createMood($mood, $shares) {
-		$share = $this->shareMood($mood, $shares);
+	public function createMood($mObj) {
+		$share = $this->shareMood($mObj, (key_exists('shares', $mobs) ? $mObj['shares'] : null));
 
 		return $share;
 	}
 
 
-	public function createMoodText($text) {
-	}
-
-
-	public function createMoodUrl($url) {
-		try {
-			return $this->httpService->getMetaFromWebsite($url);
-		} catch (\Exception $e) {
-			throw $e;
-		}
-	}
-
-
 	public function shareMood($data, $shares) {
+		$this->miscService->log("shareMood " . var_export($data, true) . ' ' . $shares);
 
 		return true;
 	}

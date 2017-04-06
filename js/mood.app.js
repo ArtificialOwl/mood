@@ -35,6 +35,7 @@
 var api = OCA.Mood.api;
 var curr = {
 	mood: '',
+	websiteInfos: {}
 };
 
 
@@ -66,38 +67,8 @@ $(document).ready(function () {
 		}
 	};
 
-
-	// /**
-	//  * @constructs Notification
-	//  */
-	// var Notification = function () {
-	// 	this.initialize();
-	// };
-
-	// Notification.prototype = {
-	//
-	// 	initialize: function () {
-	//
-	// 		//noinspection SpellCheckingInspection
-	// 		var notyf = new Notyf({
-	// 			delay: 5000
-	// 		});
-	//
-	// 		this.onSuccess = function (text) {
-	// 			notyf.confirm(text);
-	// 		};
-	//
-	// 		this.onFail = function (text) {
-	// 			notyf.alert(text);
-	// 		};
-	//
-	// 	}
-	//
-	// };
-
 	OCA.Mood.Navigation = Navigation;
 	OCA.Mood.navigation = new Navigation();
-
 
 });
 

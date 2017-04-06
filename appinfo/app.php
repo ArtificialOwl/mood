@@ -27,4 +27,4 @@
 
 $app = new \OCA\Mood\AppInfo\Application();
 
-$app->registerNavigation();
+$app->registerToActivity();

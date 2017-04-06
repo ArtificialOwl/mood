@@ -32,8 +32,7 @@ use OCP\IConfig;
 class ConfigService {
 
 
-	private $defaults = [
-	];
+	private $defaults = [];
 
 	private $appName;
 

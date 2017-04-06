@@ -29,16 +29,12 @@ namespace OCA\Mood\Controller;
 
 use OCA\Mood\Service\HttpService;
 use \OCA\Mood\Service\MiscService;
-use \OCA\Mood\Service\ConfigService;
 use OC\AppFramework\Http;
-use OCA\Mood\Service\MoodService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\FileDisplayResponse;
-use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IRequest;
 
 class ToolsController extends Controller {
@@ -78,17 +74,15 @@ class ToolsController extends Controller {
 	 */
 	public function dataFromUrl($url) {
 
-//		$url =
-//			'https://www.reddit.com/r/EarthPorn/comments/61pubm/the_arctic_is_the_perfect_place_to_go_for_a/';
 		try {
 			$data = $this->httpService->getMetaFromWebsite($url);
 
-			return NavigationController::success(['url' => $url, 'data' => $data]);
+			return MoodController::success(['url' => $url, 'data' => $data]);
 		} catch (\Exception $e) {
 			$error = $e->getMessage();
 		}
 
-		return NavigationController::fail(
+		return MoodController::fail(
 			['url' => $url, 'error' => $error]
 		);
 	}

@@ -38,7 +38,7 @@ use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
 
-class NavigationController extends Controller {
+class MoodController extends Controller {
 
 	/** @var string */
 	private $userId;
@@ -69,24 +69,23 @@ class NavigationController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * @param $type
-	 * @param $entry
-	 * @param $shares
+	 * @param $mObj
 	 *
 	 * @return DataResponse
 	 */
-	public function createMood($data, $shares) {
+	public function create($mObj) {
 
+		$this->miscService->log("!!!! " . var_export($mObj, true));
 		try {
-			$result = $this->moodService->createMood($data, $shares);
+			$result = $this->moodService->createMood($mObj);
 
-			return self::success(['data' => $data, 'result' => $result]);
+			return self::success(['data' => $mObj, 'result' => $result]);
 		} catch (\Exception $e) {
 			$error = $e->getMessage();
 		}
 
 		return self::fail(
-			['data' => $data, 'error' => $error]
+			['data' => $mObj, 'error' => $error]
 		);
 
 
@@ -114,19 +113,6 @@ class NavigationController extends Controller {
 		return new DataResponse(
 			array_merge($data, array('status' => 1)),
 			Http::STATUS_CREATED
-		);
-	}
-
-
-	/**
-	 * @NoCSRFRequired
-	 * @NoAdminRequired
-	 *
-	 * @return TemplateResponse
-	 */
-	public function navigate() {
-		return new TemplateResponse(
-			'mood', 'navigate', []
 		);
 	}
 
