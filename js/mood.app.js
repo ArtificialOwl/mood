@@ -32,11 +32,43 @@
 /** global: actions */
 /** global: elements */
 
+var circles = OCA.Circles.api;
 var api = OCA.Mood.api;
 var curr = {
 	mood: '',
+	circles: [],
+	shares: [],
+	sharesDisplayed: false,
 	requestingInfos: false,
-	websiteInfos: {}
+	websiteInfos: {},
+
+	isShared: function (share) {
+		if ($.inArray(share, curr.shares) > -1) {
+			return true;
+		}
+		return false;
+	},
+
+	addShare: function (share) {
+		if (!curr.isShared(share)) {
+			curr.shares.push(share);
+		}
+	},
+
+	remShare: function (share) {
+		var e = curr.shares.indexOf(share);
+		if (e > -1) {
+			curr.shares.splice(e, 1);
+		}
+	},
+
+	switchShare: function (share) {
+		if (curr.isShared(share)) {
+			curr.remShare(share);
+		} else {
+			curr.addShare(share);
+		}
+	}
 };
 
 
@@ -60,11 +92,12 @@ $(document).ready(function () {
 
 		init: function () {
 			elements.integrateMoodToActivity();
-
 			elements.initElements();
 			elements.initUI();
-			elements.initExperienceMoodPost();
+			elements.initExperienceMood();
+
 			nav.initNavigation();
+			nav.initCircles();
 		}
 	};
 

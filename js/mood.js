@@ -34,10 +34,10 @@
 	 */
 	var Mood = function () {
 		this.initialize();
+
 	};
 
 	Mood.prototype = {
-
 
 		initialize: function () {
 

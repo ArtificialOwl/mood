@@ -30,6 +30,7 @@
 /** global: elements */
 /** global: curr */
 /** global: api */
+/** global: circles */
 
 
 var nav = {
@@ -37,6 +38,25 @@ var nav = {
 
 	initNavigation: function () {
 
+	},
+
+
+	initCircles: function () {
+		circles.searchCircles('all', '', 1, nav.initCirclesResult);
+	},
+
+
+	initCirclesResult: function (result) {
+		curr.circles = [];
+		$.each(result.data, function (k, item) {
+			curr.circles.push({
+				id: item.id,
+				name: item.name
+			});
+			console.log("> " + JSON.stringify(item));
+		});
+
+		nav.fillSharesList();
 	},
 
 
@@ -53,7 +73,41 @@ var nav = {
 		elements.websiteInfos.append('<b>' + infos.title + ' ' + website + '</b>');
 		elements.websiteInfos.append('<br /> ' + infos.description);
 		elements.websiteInfos.fadeIn(400);
+	},
+
+
+	fillSharesList: function () {
+
+		elements.moodSharesList.empty();
+		$.each(curr.circles, function (k, circle) {
+			elements.moodSharesList.append(
+				'<div class="sharesItem" data-id="circle:' + circle.id + '">' +
+				'<table><tr><td><input type="checkbox" class="check" />' +
+				'</td><td>' + circle.name + '</td></tr></table></div>');
+		});
+
+		elements.initExperienceMoodSharesItems();
+	},
+
+
+	switchSharesDisplay: function () {
+		var sharePosition = elements.moodShares.position();
+
+		elements.moodSharesList.css({
+			position: 'absolute',
+			top: sharePosition.top + 50,
+			left: sharePosition.left + 10
+		});
+
+		if (curr.sharesDisplayed) {
+			curr.sharesDisplayed = false;
+			elements.moodSharesList.fadeOut(400);
+		} else {
+			curr.sharesDisplayed = true;
+			elements.moodSharesList.fadeIn(400);
+		}
 	}
+
 
 };
 

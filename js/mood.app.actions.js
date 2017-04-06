@@ -42,7 +42,7 @@ var actions = {
 			'shares': shares
 		};
 		elements.websiteInfos.hide(300);
-		elements.newMood.val('');
+		elements.moodText.val('');
 		curr.requestingInfos = false;
 		this.newMood(mObj);
 	},

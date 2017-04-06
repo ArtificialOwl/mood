@@ -1,0 +1,175 @@
+{
+  "type": "all",
+  "data": [
+    {
+      "id": "8",
+      "name": "dasd",
+      "owner": {
+        "circle_id": null,
+        "user_id": "cult",
+        "level": 0,
+        "level_string": "Not a member",
+        "status": "Unknown",
+        "note": null,
+        "joined": null
+      },
+      "user": {
+        "circle_id": null,
+        "user_id": null,
+        "level": 9,
+        "level_string": "Owner",
+        "status": "Member",
+        "note": null,
+        "joined": "2017-04-05 09:34:50"
+      },
+      "description": null,
+      "type": "Personal",
+      "creation": "2017-04-05 09:34:50",
+      "typeString": "Personal",
+      "typeLongString": "Personal Circle",
+      "members": null
+    },
+    {
+      "id": "5",
+      "name": "dssdasadads",
+      "owner": {
+        "circle_id": null,
+        "user_id": "cult",
+        "level": 0,
+        "level_string": "Not a member",
+        "status": "Unknown",
+        "note": null,
+        "joined": null
+      },
+      "user": {
+        "circle_id": null,
+        "user_id": null,
+        "level": 9,
+        "level_string": "Owner",
+        "status": "Member",
+        "note": null,
+        "joined": "2017-03-27 19:29:43"
+      },
+      "description": null,
+      "type": "Hidden",
+      "creation": "2017-03-27 19:29:43",
+      "typeString": "Hidden",
+      "typeLongString": "Hidden Circle",
+      "members": null
+    },
+    {
+      "id": "6",
+      "name": "mood",
+      "owner": {
+        "circle_id": null,
+        "user_id": "cult",
+        "level": 0,
+        "level_string": "Not a member",
+        "status": "Unknown",
+        "note": null,
+        "joined": null
+      },
+      "user": {
+        "circle_id": null,
+        "user_id": null,
+        "level": 9,
+        "level_string": "Owner",
+        "status": "Member",
+        "note": null,
+        "joined": "2017-03-27 19:29:54"
+      },
+      "description": null,
+      "type": "Public",
+      "creation": "2017-03-27 19:29:54",
+      "typeString": "Public",
+      "typeLongString": "Public Circle",
+      "members": null
+    },
+    {
+      "id": "2",
+      "name": "sdfsdfsddfs",
+      "owner": {
+        "circle_id": null,
+        "user_id": "cult",
+        "level": 0,
+        "level_string": "Not a member",
+        "status": "Unknown",
+        "note": null,
+        "joined": null
+      },
+      "user": {
+        "circle_id": null,
+        "user_id": null,
+        "level": 9,
+        "level_string": "Owner",
+        "status": "Member",
+        "note": null,
+        "joined": "2017-03-27 13:01:14"
+      },
+      "description": null,
+      "type": "Personal",
+      "creation": "2017-03-27 13:01:14",
+      "typeString": "Personal",
+      "typeLongString": "Personal Circle",
+      "members": null
+    },
+    {
+      "id": "1",
+      "name": "test",
+      "owner": {
+        "circle_id": null,
+        "user_id": "cult",
+        "level": 0,
+        "level_string": "Not a member",
+        "status": "Unknown",
+        "note": null,
+        "joined": null
+      },
+      "user": {
+        "circle_id": null,
+        "user_id": null,
+        "level": 9,
+        "level_string": "Owner",
+        "status": "Member",
+        "note": null,
+        "joined": "2017-03-27 02:23:07"
+      },
+      "description": null,
+      "type": "Personal",
+      "creation": "2017-03-27 02:23:07",
+      "typeString": "Personal",
+      "typeLongString": "Personal Circle",
+      "members": null
+    },
+    {
+      "id": "7",
+      "name": "testddd",
+      "owner": {
+        "circle_id": null,
+        "user_id": "cult",
+        "level": 0,
+        "level_string": "Not a member",
+        "status": "Unknown",
+        "note": null,
+        "joined": null
+      },
+      "user": {
+        "circle_id": null,
+        "user_id": null,
+        "level": 9,
+        "level_string": "Owner",
+        "status": "Member",
+        "note": null,
+        "joined": "2017-03-30 05:22:07"
+      },
+      "description": null,
+      "type": "Personal",
+      "creation": "2017-03-30 05:22:07",
+      "typeString": "Personal",
+      "typeLongString": "Personal Circle",
+      "members": null
+    }
+  ],
+  "status": 1
+}  mood.app.navigation.js:50: 3
+

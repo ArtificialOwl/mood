@@ -168,9 +168,18 @@ class Application extends App {
 
 
 	public function registerToActivity() {
+		if (!\OCP\App::isEnabled('circles')) {
+			$this->getContainer()
+				 ->query('MiscService')
+				 ->log("mood needs circles");
+
+			return;
+		}
+
 		\OC::$server->getEventDispatcher()
 					->addListener(
 						'OCA\Activity::loadAdditionalScripts', function($event) {
+						\OCP\Util::addScript('circles', 'circles');
 						\OCP\Util::addScript('mood', 'mood');
 						\OCP\Util::addScript('mood', 'mood.app');
 						\OCP\Util::addScript('mood', 'mood.app.elements');
