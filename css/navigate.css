@@ -15,20 +15,66 @@
 	background: #ffffffaa !important;
 }
 
-#website_infos {
-}
-
 #emptycontent {
 	position: absolute;
 	z-index: -99;
 	left: 200px;
 }
 
+/**
+*
+*
+*
+*/
+#moody, #moody .lightenbg {
+	height: 55px;
+}
+
+#moody .lightenbg {
+	width: 100%;
+	background: #ffffffe0;
+	position: absolute;
+}
+
+#moody .mood_input {
+	position: absolute;
+	margin: 10px;
+}
+
+#moody #mood {
+	width: 500px;
+}
+
+#moody #mood_submit {
+	left: 510px;
+}
+
+#website_infos {
+	margin: 20px;
+	padding: 10px;
+	border: solid 4px;
+	max-width: 500px;
+	border-radius: 10px;
+	height: 130px;
+
+	-moz-box-shadow: 3px 3px 1px #86868660;
+	-webkit-box-shadow: 3px 3px 1px #86868660;
+	box-shadow: 3px 3px 1px #86868660;
+}
+
+
+#moody .lightenbg {
+	width: 100%;
+	background: #ffffffe0;
+	position: absolute;
+}
+
 #website_infos .thumb {
-	width: auto;
+	width: 120px;
 	max-width: 120px;
-	height: auto;
+	height: 120px;
 	max-height: 120px;
 	float: left;
 	margin: 3px 15px 5px 3px;
 }
+

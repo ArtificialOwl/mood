@@ -57,6 +57,8 @@ var nav = {
 		elements.websiteInfos.append('<br /> ' + infos.description);
 
 		// elements.websiteInfos.find('.website').text(infos.website);
-	}
+	},
+
+
 };
 

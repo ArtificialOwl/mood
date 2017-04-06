@@ -42,7 +42,7 @@ style('mood', 'navigate');
 
 <div id="app-navigation">
 	<div class="navigation-element">
-		<input id="mood" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
+		<input class="input" id="mood" type="text" placeholder="<?php p($l->t('New mood')); ?>"/>
 		<input id="mood_submit" type="submit" value="Share your mood"/>
 	</div>
 	<div id="website_infos"></div>

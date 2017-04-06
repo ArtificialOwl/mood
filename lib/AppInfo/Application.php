@@ -173,11 +173,19 @@ class Application extends App {
 		}
 		);
 
-//		\OC::$server->getEventDispatcher()->addListener('OCA\Files::loadAdditionalScripts', function () {
-//			\OCP\Util::addScript('mood', 'navigate');
-//			\OCP\Util::addStyle('mood', 'navigate');
-//		});
 
+		\OC::$server->getEventDispatcher()
+					->addListener(
+						'OCA\Activity::loadAdditionalScripts', function($event) {
+						\OCP\Util::addScript('mood', 'mood');
+						\OCP\Util::addScript('mood', 'mood.app');
+						\OCP\Util::addScript('mood', 'mood.app.elements');
+						\OCP\Util::addScript('mood', 'mood.app.actions');
+						\OCP\Util::addScript('mood', 'mood.app.navigation');
+
+						\OCP\Util::addStyle('mood', 'navigate');
+					}
+					);
 	}
 
 

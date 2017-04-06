@@ -30,8 +30,6 @@
 namespace OCA\Mood\Service;
 
 
-use OCA\Shares\Exceptions\MoodUnknownType;
-
 class MoodService {
 
 	private $httpService;
@@ -44,7 +42,6 @@ class MoodService {
 
 
 	public function createMood($mood, $shares) {
-
 		$share = $this->shareMood($mood, $shares);
 
 		return $share;

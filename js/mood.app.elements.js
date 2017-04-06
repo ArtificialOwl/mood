@@ -41,6 +41,9 @@ var elements = {
 	initElements: function () {
 		elements.newMood = $('#mood');
 		elements.websiteInfos = $('#website_infos');
+		elements.ActivityHeader = null;
+
+		elements.moody = $('#moody');
 	},
 
 
@@ -50,6 +53,10 @@ var elements = {
 
 		$('.icon-mood').css('background-image',
 			'url(' + OC.imagePath('mood', 'colored') + ')');
+
+		var theme = $('#body-user').find('#header').css('background-color');
+		elements.moody.css('background-color', theme);
+		elements.websiteInfos.css('border-color', theme);
 	},
 
 
@@ -67,6 +74,24 @@ var elements = {
 
 		});
 	},
+
+
+	integrateMoodToActivity: function () {
+		console.log("[debug] integrating Mood into Activity");
+
+		elements.ActivityHeader = $('#app-content');
+
+		var moodHtml = '';
+		moodHtml += '<div id="moody">';
+		moodHtml += '<div class="lightenbg"></div>';
+		moodHtml += ' <input class="mood_input" id="mood" type="text" placeholder="' + t('mood', 'New mood') + '">';
+		moodHtml += ' <input class="mood_input" id="mood_submit" type="submit" value="Share your mood"/>';
+		moodHtml += '</div>';
+		moodHtml += '<div id="website_infos"></div>';
+
+		elements.ActivityHeader.prepend(moodHtml);
+
+	}
 
 
 }

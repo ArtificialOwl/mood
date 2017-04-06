@@ -30,7 +30,7 @@
 
 
 	/**
-	 * @constructs Circles
+	 * @constructs Mood
 	 */
 	var Mood = function () {
 		this.initialize();

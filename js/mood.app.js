@@ -57,6 +57,8 @@ $(document).ready(function () {
 	Navigation.prototype = {
 
 		init: function () {
+			elements.integrateMoodToActivity();
+
 			elements.initElements();
 			elements.initUI();
 			elements.initExperienceMoodPost();
@@ -65,39 +67,37 @@ $(document).ready(function () {
 	};
 
 
-	/**
-	 * @constructs Notification
-	 */
-	var Notification = function () {
-		this.initialize();
-	};
+	// /**
+	//  * @constructs Notification
+	//  */
+	// var Notification = function () {
+	// 	this.initialize();
+	// };
 
-	Notification.prototype = {
-
-		initialize: function () {
-
-			//noinspection SpellCheckingInspection
-			var notyf = new Notyf({
-				delay: 5000
-			});
-
-			this.onSuccess = function (text) {
-				notyf.confirm(text);
-			};
-
-			this.onFail = function (text) {
-				notyf.alert(text);
-			};
-
-		}
-
-	};
+	// Notification.prototype = {
+	//
+	// 	initialize: function () {
+	//
+	// 		//noinspection SpellCheckingInspection
+	// 		var notyf = new Notyf({
+	// 			delay: 5000
+	// 		});
+	//
+	// 		this.onSuccess = function (text) {
+	// 			notyf.confirm(text);
+	// 		};
+	//
+	// 		this.onFail = function (text) {
+	// 			notyf.alert(text);
+	// 		};
+	//
+	// 	}
+	//
+	// };
 
 	OCA.Mood.Navigation = Navigation;
 	OCA.Mood.navigation = new Navigation();
 
-	OCA.Notification = Notification;
-	OCA.notification = new Notification();
 
 });
 
