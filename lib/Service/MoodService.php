@@ -51,7 +51,7 @@ class MoodService {
 
 
 	public function createMood($mObj) {
-		$share = $this->shareMood($mObj, (key_exists('shares', $mobs) ? $mObj['shares'] : null));
+		$share = $this->shareMood($mObj, (key_exists('shares', $mObj) ? $mObj['shares'] : null));
 
 		return $share;
 	}

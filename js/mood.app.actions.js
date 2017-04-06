@@ -41,6 +41,9 @@ var actions = {
 			'website': curr.websiteInfos,
 			'shares': shares
 		};
+		elements.websiteInfos.hide(300);
+		elements.newMood.val('');
+		curr.requestingInfos = false;
 		this.newMood(mObj);
 	},
 
@@ -61,12 +64,14 @@ var actions = {
 
 
 	getDataFromUrl: function (url) {
+		curr.requestingInfos = true;
 		api.getDataFromUrl(url, actions.getDataFromUrlResult);
 	},
 
 
 	getDataFromUrlResult: function (result) {
 		if (result.status !== 1) return;
+		if (curr.requestingInfos === false) return;
 		nav.fillWebsiteInfos(result.data);
 	}
 

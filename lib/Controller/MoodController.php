@@ -75,7 +75,6 @@ class MoodController extends Controller {
 	 */
 	public function create($mObj) {
 
-		$this->miscService->log("!!!! " . var_export($mObj, true));
 		try {
 			$result = $this->moodService->createMood($mObj);
 

@@ -35,6 +35,7 @@
 var api = OCA.Mood.api;
 var curr = {
 	mood: '',
+	requestingInfos: false,
 	websiteInfos: {}
 };
 
