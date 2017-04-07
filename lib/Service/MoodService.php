@@ -50,17 +50,17 @@ class MoodService {
 	}
 
 
-	public function createMood($mood, $shares) {
-		$share = $this->shareMood($mood, $shares);
-
-		return $share;
-	}
-
-
-	public function shareMood($data, $shares) {
-		$this->miscService->log("shareMood " . var_export($data, true) . ' ' . $shares);
-
-		return true;
-	}
+//	public function createMood($mood, $shares) {
+//		$share = $this->shareMood($mood, $shares);
+//
+//		return $share;
+//	}
+//
+//
+//	public function shareMood($data, $shares) {
+//		$this->miscService->log("shareMood " . var_export($data, true) . ' ' . $shares);
+//
+//		return true;
+//	}
 
 }
