@@ -67,32 +67,6 @@ class MoodController extends Controller {
 
 
 	/**
-	 * @NoAdminRequired
-	 *
-	 * @param $mood
-	 * @param $shares
-	 *
-	 * @return DataResponse
-	 */
-	public function create($mood, $shares) {
-
-		try {
-			$result = $this->moodService->createMood($mood, $shares);
-
-			return self::success(['mood' => $mood, 'shares' => $shares, 'result' => $result]);
-		} catch (\Exception $e) {
-			$error = $e->getMessage();
-		}
-
-		return self::fail(
-			['mood' => $mood, 'shares' => $shares, 'error' => $error]
-		);
-
-
-	}
-
-
-	/**
 	 * @param $data
 	 *
 	 * @return DataResponse

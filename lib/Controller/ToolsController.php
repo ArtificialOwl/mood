@@ -77,12 +77,12 @@ class ToolsController extends Controller {
 		try {
 			$data = $this->httpService->getMetaFromWebsite($url);
 
-			return MoodController::success(['url' => $url, 'data' => $data]);
+			return self::success(['url' => $url, 'data' => $data]);
 		} catch (\Exception $e) {
 			$error = $e->getMessage();
 		}
 
-		return MoodController::fail(
+		return self::fail(
 			['url' => $url, 'error' => $error]
 		);
 	}
@@ -113,4 +113,28 @@ class ToolsController extends Controller {
 
 	}
 
+
+	/**
+	 * @param $data
+	 *
+	 * @return DataResponse
+	 */
+	public static function fail($data) {
+		return new DataResponse(
+			array_merge($data, array('status' => 0)),
+			Http::STATUS_NON_AUTHORATIVE_INFORMATION
+		);
+	}
+
+	/**
+	 * @param $data
+	 *
+	 * @return DataResponse
+	 */
+	public static function success($data) {
+		return new DataResponse(
+			array_merge($data, array('status' => 1)),
+			Http::STATUS_CREATED
+		);
+	}
 }

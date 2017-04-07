@@ -60,7 +60,6 @@ var actions = {
 			if (info[0] === 'circle') {
 				circles.shareToCircle(info[1], 'mood', '', mood, actions.newMoodResult);
 			}
-			//api.createMood(mood, shares, actions.newMoodResult);
 		});
 	},
 
