@@ -51,9 +51,11 @@ var nav = {
 		$.each(result.data, function (k, item) {
 			curr.circles.push({
 				id: item.id,
-				name: item.name
+				name: item.name,
+				type: item.type,
+				owner: item.owner.user_id,
+				level: item.user.level_string
 			});
-			console.log("> " + JSON.stringify(item));
 		});
 
 		nav.fillSharesList();
@@ -83,7 +85,8 @@ var nav = {
 			elements.moodSharesList.append(
 				'<div class="sharesItem" data-id="circle:' + circle.id + '">' +
 				'<table><tr><td><input type="checkbox" class="check" />' +
-				'</td><td>' + circle.name + '</td></tr></table></div>');
+				'</td><td>' + circle.name + ' (' + circle.type + ', ' + circle.owner +
+				')</td></tr></table></div>');
 		});
 
 		elements.initExperienceMoodSharesItems();

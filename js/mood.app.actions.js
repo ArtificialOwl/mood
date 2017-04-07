@@ -35,16 +35,17 @@
 
 var actions = {
 
-	onEventPostMood: function (mood, shares) {
-		var mObj = {
-			'mood': mood,
-			'website': curr.websiteInfos,
-			'shares': shares
+	onEventPostMood: function (text) {
+		var mood = {
+			text: text,
+			website: curr.websiteInfos
 		};
+
 		elements.websiteInfos.hide(300);
 		elements.moodText.val('');
 		curr.requestingInfos = false;
-		this.newMood(mObj);
+
+		this.newMood(mood, curr.shares);
 	},
 
 
@@ -53,13 +54,19 @@ var actions = {
 	},
 
 
-	newMood: function (mObj) {
-		api.createMood(mObj, actions.newMoodResult);
+	newMood: function (mood, shares) {
+		$.each(shares, function (k, share) {
+			var info = share.split(':', 2);
+			if (info[0] === 'circle') {
+				circles.shareToCircle(info[1], 'mood', '', mood, actions.newMoodResult);
+			}
+			//api.createMood(mood, shares, actions.newMoodResult);
+		});
 	},
 
 
 	newMoodResult: function (result) {
-		console.log("_2; " + JSON.stringify(result));
+		console.log("result new mood ; " + JSON.stringify(result));
 	},
 
 

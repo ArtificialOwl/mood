@@ -43,13 +43,14 @@
 
 			var self = this;
 
-			this.createMood = function (mObj, callback) {
+			this.createMood = function (mood, shares, callback) {
 				var result = {status: -1};
 				$.ajax({
 					method: 'PUT',
 					url: OC.generateUrl(OC.linkTo('mood', 'mood')),
 					data: {
-						mObj: mObj
+						mood: mood,
+						shares: shares
 					}
 				}).done(function (res) {
 					self.onCallback(callback, res);

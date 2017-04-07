@@ -69,22 +69,23 @@ class MoodController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * @param $mObj
+	 * @param $mood
+	 * @param $shares
 	 *
 	 * @return DataResponse
 	 */
-	public function create($mObj) {
+	public function create($mood, $shares) {
 
 		try {
-			$result = $this->moodService->createMood($mObj);
+			$result = $this->moodService->createMood($mood, $shares);
 
-			return self::success(['data' => $mObj, 'result' => $result]);
+			return self::success(['mood' => $mood, 'shares' => $shares, 'result' => $result]);
 		} catch (\Exception $e) {
 			$error = $e->getMessage();
 		}
 
 		return self::fail(
-			['data' => $mObj, 'error' => $error]
+			['mood' => $mood, 'shares' => $shares, 'error' => $error]
 		);
 
 
