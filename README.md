@@ -1,6 +1,6 @@
 # Mood
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/daita/mood/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/daita/mood/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/daita/mood/badges/quality-score.png?b=master&)](https://scrutinizer-ci.com/g/daita/mood/?branch=master)
 
 **Share your mood.**
 
