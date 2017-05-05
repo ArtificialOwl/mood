@@ -91,4 +91,9 @@ class MoodController extends Controller {
 	}
 
 
+	public function shareToCircle($circleId, $item) {
+		$this->moodService->shareToCircle($circleId, $item);
+	}
+
+
 }

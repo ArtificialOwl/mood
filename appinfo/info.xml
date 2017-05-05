@@ -2,10 +2,10 @@
 <info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>mood</id>
-	<name>Mood</name>
-	<summary>Mood</summary>
-	<description>Mood</description>
-	<version>0.0.1</version>
+	<name>mood</name>
+	<summary>mood</summary>
+	<description>mood</description>
+	<version>0.1.0</version>
 	<licence>agpl</licence>
 	<author>Maxence Lange</author>
 	<documentation>
@@ -19,4 +19,17 @@
 	<dependencies>
 		<nextcloud min-version="12" max-version="12"/>
 	</dependencies>
+
+	<activity>
+		<settings>
+			<setting>OCA\Mood\Activity\Setting</setting>
+		</settings>
+		<filters>
+			<filter>OCA\Mood\Activity\Filter</filter>
+		</filters>
+		<providers>
+			<provider>OCA\Mood\Activity\Provider</provider>
+		</providers>
+	</activity>
+
 </info>

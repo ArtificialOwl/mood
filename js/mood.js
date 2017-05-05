@@ -66,6 +66,22 @@
 			};
 
 
+			this.shareMoodToCircle = function (circleId, item, callback) {
+				var result = {status: -1};
+				$.ajax({
+					method: 'PUT',
+					url: OC.generateUrl('/apps/mood/mood/circle/' + circleId),
+					data: {
+						item: item
+					}
+				}).done(function (res) {
+					self.onCallback(callback, res);
+				}).fail(function () {
+					self.onCallback(callback, result);
+				});
+			};
+
+
 			this.onCallback = function (callback, result) {
 				if (callback && (typeof callback === "function")) {
 					callback(result);

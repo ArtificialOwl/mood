@@ -27,6 +27,7 @@
 
 return [
 	'routes' => [
+		['name' => 'Mood#shareToCircle', 'url' => 'mood/circle/{circleId}', 'verb' => 'PUT'],
 		['name' => 'Tools#dataFromUrl', 'url' => 'data/url', 'verb' => 'GET'],
 		[
 			'name' => 'Tools#binFromExternalImage', 'url' => 'data/image', 'verb' => 'GET'

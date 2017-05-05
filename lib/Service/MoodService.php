@@ -30,10 +30,17 @@
 namespace OCA\Mood\Service;
 
 
+use OCA\Circles\Api\Circles;
+use OCA\Mood\Circles\Broadcaster;
+use OCP\Activity\IManager;
+
 class MoodService {
 
 	/** @var HttpService */
 	private $httpService;
+
+	/** @var IManager */
+	private $activityManager;
 
 	/** @var MiscService */
 	private $miscService;
@@ -43,24 +50,19 @@ class MoodService {
 	 *
 	 * @param HttpService $httpService
 	 * @param MiscService $miscService
+	 * @param IManager $activityManager
 	 */
-	public function __construct(HttpService $httpService, MiscService $miscService) {
+	public function __construct(
+		IManager $activityManager, HttpService $httpService, MiscService $miscService
+	) {
+		$this->activityManager = $activityManager;
 		$this->httpService = $httpService;
 		$this->miscService = $miscService;
 	}
 
 
-//	public function createMood($mood, $shares) {
-//		$share = $this->shareMood($mood, $shares);
-//
-//		return $share;
-//	}
-//
-//
-//	public function shareMood($data, $shares) {
-//		$this->miscService->log("shareMood " . var_export($data, true) . ' ' . $shares);
-//
-//		return true;
-//	}
+	public function shareToCircle(int $circleId, array $item) {
+		Circles::shareToCircle($circleId, 'mood', '', $item, 'OCA\Mood\Circles\Broadcaster');
+	}
 
 }

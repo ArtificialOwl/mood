@@ -58,7 +58,8 @@ var actions = {
 		$.each(shares, function (k, share) {
 			var info = share.split(':', 2);
 			if (info[0] === 'circle') {
-				circles.shareToCircle(info[1], 'mood', '', mood, actions.newMoodResult);
+				api.shareMoodToCircle(info[1], mood, actions.newMoodResult);
+			//	circles.shareToCircle(info[1], 'mood', '', mood, actions.newMoodResult);
 			}
 		});
 	},
@@ -79,6 +80,12 @@ var actions = {
 		if (result.status !== 1) return;
 		if (curr.requestingInfos === false) return;
 		nav.fillWebsiteInfos(result.data);
+	},
+
+
+	ping: function () {
+
+
 	}
 
 };

@@ -73,7 +73,7 @@ class Application extends App {
 		$container->registerService(
 			'MoodService', function($c) {
 			return new MoodService(
-				$c->query('HttpService'), $c->query('MiscService')
+				$c->query('ActivityManager'), $c->query('HttpService'), $c->query('MiscService')
 			);
 		}
 		);
@@ -156,6 +156,15 @@ class Application extends App {
 			return is_null($user) ? '' : $user->getUID();
 		}
 		);
+
+
+		$container->registerService(
+			'ActivityManager', function($c) {
+			return $c->query('ServerContainer')
+					 ->getActivityManager();
+		}
+		);
+
 
 		$container->registerService(
 			'UserManager', function($c) {
