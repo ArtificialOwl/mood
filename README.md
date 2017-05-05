@@ -11,12 +11,12 @@ Mood will allow your cloud-users to socially share their mood. It will add an he
 
 This app will need:
 - Nextcloud 12
-- [https://github.com/nextcloud/circles](Circles) (from the app store)
-- [https://github.com/nextcloud/activity](Activity) (from the app store)
+- [Circles](https://github.com/nextcloud/circles) (from the app store)
+- [Activity](https://github.com/nextcloud/activity) (from the app store)
 
 
 **Mood is PRE-ALPHA. This project is mostly here to test Circles' API.**
 
 ### Credits
 
-App Icon by [http://www.flaticon.com/authors/madebyoliver](Madebyoliver) under Creative Commons BY 3.0
+App Icon by [Madebyoliver](http://www.flaticon.com/authors/madebyoliver) under Creative Commons BY 3.0
