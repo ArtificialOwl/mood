@@ -1,6 +1,7 @@
 # Mood
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/daita/mood/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/daita/mood/?branch=master)
+
 **Share your mood.**
 
 ![](https://raw.githubusercontent.com/daita/mood/master/screenshots/0.1.0.png)
