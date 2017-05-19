@@ -33,7 +33,6 @@ class Filter implements IFilter {
 	 * @since 11.0.0
 	 */
 	public function getName() {
-		//return $this->l->t('moods');
 		return 'moods';
 	}
 

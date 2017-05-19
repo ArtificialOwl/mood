@@ -12,7 +12,7 @@ class Setting implements ISetting {
 	protected $l10n;
 
 	/**
-	 * @param IL10N $l
+	 * @param IL10N $l10n
 	 */
 	public function __construct(IL10N $l10n) {
 		$this->l10n = $l10n;

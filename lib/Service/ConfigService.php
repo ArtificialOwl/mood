@@ -32,7 +32,7 @@ use OCP\IConfig;
 class ConfigService {
 
 
-	private $defaults = [];
+	private $userId;
 
 	private $appName;
 
@@ -69,5 +69,4 @@ class ConfigService {
 	public function setUserValue($key, $value) {
 		return $this->config->setUserValue($this->userId, $this->appName, $key, $value);
 	}
-
 }

@@ -131,8 +131,6 @@ var elements = {
 
 
 	integrateMoodToActivity: function () {
-		console.log("[debug] integrating Mood into Activity");
-
 		elements.ActivityHeader = $('#app-content');
 
 		var moodHtml = '';

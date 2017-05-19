@@ -8,7 +8,6 @@ use OCA\Mood\Service\MiscService;
 use OCP\Activity\IEvent;
 use OCP\Activity\IManager;
 use OCP\Activity\IProvider;
-use OCP\Comments\NotFoundException;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 

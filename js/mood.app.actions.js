@@ -59,14 +59,12 @@ var actions = {
 			var info = share.split(':', 2);
 			if (info[0] === 'circle') {
 				api.shareMoodToCircle(info[1], mood, actions.newMoodResult);
-			//	circles.shareToCircle(info[1], 'mood', '', mood, actions.newMoodResult);
 			}
 		});
 	},
 
 
 	newMoodResult: function (result) {
-		console.log("result new mood ; " + JSON.stringify(result));
 	},
 
 
@@ -77,16 +75,12 @@ var actions = {
 
 
 	getDataFromUrlResult: function (result) {
-		if (result.status !== 1) return;
-		if (curr.requestingInfos === false) return;
+		if (result.status !== 1 || curr.requestingInfos === false) {
+			return;
+		}
 		nav.fillWebsiteInfos(result.data);
-	},
-
-
-	ping: function () {
-
-
 	}
+
 
 };
 

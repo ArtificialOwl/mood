@@ -45,9 +45,8 @@ class Broadcaster implements IBroadcaster {
 
 			return true;
 		} catch (\Exception $e) {
+			return false;
 		}
-
-		return false;
 	}
 
 }

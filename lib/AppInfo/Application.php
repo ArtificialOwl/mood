@@ -175,7 +175,7 @@ class Application extends App {
 
 		\OC::$server->getEventDispatcher()
 					->addListener(
-						'OCA\Activity::loadAdditionalScripts', function($event) {
+						'OCA\Activity::loadAdditionalScripts', function() {
 						\OCP\Util::addScript('circles', 'circles');
 						\OCP\Util::addScript('mood', 'mood');
 						\OCP\Util::addScript('mood', 'mood.app');
