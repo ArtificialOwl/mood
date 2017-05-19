@@ -39,7 +39,6 @@ class Broadcaster implements IBroadcaster {
 			$event->setType('mood');
 			$event->setAffectedUser($userId);
 			$event->setAuthor($share->getAuthor());
-
 			$event->setSubject('mood_item', ['share' => json_encode($share)]);
 
 			$this->activityManager->publish($event);

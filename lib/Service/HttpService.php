@@ -111,9 +111,9 @@ class HttpService {
 	public static function fillWithOpenGraph($tags) {
 		return [
 			'title'       => ((key_exists('og:title', $tags)) ? $tags['og:title'] : ''),
-			'thumb'       => ((key_exists('og:title', $tags)) ? $tags['og:image'] : ''),
-			'description' => ((key_exists('og:title', $tags)) ? $tags['og:description'] : ''),
-			'website'     => ((key_exists('og:title', $tags)) ? $tags['og:site_name'] : ''),
+			'thumb'       => ((key_exists('og:image', $tags)) ? $tags['og:image'] : ''),
+			'description' => ((key_exists('og:description', $tags)) ? $tags['og:description'] : ''),
+			'website'     => ((key_exists('og:site_name', $tags)) ? $tags['og:site_name'] : ''),
 		];
 	}
 

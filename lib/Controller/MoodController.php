@@ -65,32 +65,6 @@ class MoodController extends Controller {
 		$this->miscService = $miscService;
 	}
 
-
-	/**
-	 * @param $data
-	 *
-	 * @return DataResponse
-	 */
-	public static function fail($data) {
-		return new DataResponse(
-			array_merge($data, array('status' => 0)),
-			Http::STATUS_NON_AUTHORATIVE_INFORMATION
-		);
-	}
-
-	/**
-	 * @param $data
-	 *
-	 * @return DataResponse
-	 */
-	public static function success($data) {
-		return new DataResponse(
-			array_merge($data, array('status' => 1)),
-			Http::STATUS_CREATED
-		);
-	}
-
-
 	public function shareToCircle($circleId, $item) {
 		$this->moodService->shareToCircle($circleId, $item);
 	}

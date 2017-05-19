@@ -45,7 +45,6 @@ class Provider implements IProvider {
 	 */
 	public function parse($lang, IEvent $event, IEvent $previousEvent = null) {
 
-//		$this->miscService->log(">>> " . var_export($event, true));
 		if ($event->getApp() !== 'mood') {
 			throw new \InvalidArgumentException();
 		}
@@ -63,7 +62,6 @@ class Provider implements IProvider {
 
 				$share = Share::fromJSON($params['share']);
 				$mood = $share->getItem();
-
 				$this->parseActivityHeader($event, $share);
 				$this->parseMood($event, $mood);
 
@@ -139,13 +137,13 @@ class Provider implements IProvider {
 		return [
 			'type'        => 'open-graph',
 			'id'          => $id,
-			'name'       => $website['title'],
+			'name'        => $website['title'],
 			'description' => $website['description'],
-			'website'     => 'youtube.com',
-			'thumb' => \OC::$server->getURLGenerator()
-								   ->linkToRoute('mood.Tools.binFromExternalImage') . '?url='
-					   . rawurlencode($website['thumb']),
-			'link' => 'https://www.google.com/'
+			'website'     => $website['website'],
+			'thumb'       => \OC::$server->getURLGenerator()
+										 ->linkToRoute('mood.Tools.binFromExternalImage') . '?url='
+							 . rawurlencode($website['thumb']),
+			'link'        => $website['url']
 		];
 	}
 
@@ -155,7 +153,9 @@ class Provider implements IProvider {
 			'type' => 'circle',
 			'id'   => $share->getCircleId(),
 			'name' => $share->getCircleName(),
-			'link' => 'http://nextcloud/index.php/apps/circles/#' . $share->getCircleId()
+			'link' => \OC::$server->getURLGenerator()
+								  ->linkToRoute('circles.Navigation.navigate')
+					  . '#' . $share->getCircleId()
 		];
 	}
 

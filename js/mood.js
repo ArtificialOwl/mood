@@ -48,7 +48,7 @@
 				var result = {status: -1};
 				$.ajax({
 					method: 'GET',
-					url: OC.generateUrl(OC.linkTo('mood', 'data/url')),
+					url: OC.generateUrl('/apps/mood/data/url'),
 					data: {
 						url: url
 					}
@@ -61,8 +61,8 @@
 
 
 			this.localUrlOfExternalImage = function (url) {
-				return OC.generateUrl(OC.linkTo('mood', 'data/image') + '?url=' +
-					encodeURIComponent(url));
+				return OC.generateUrl('/apps/mood/data/image') + '?url=' +
+					encodeURIComponent(url);
 			};
 
 

@@ -111,18 +111,6 @@ class Application extends App {
 		);
 
 
-		/**
-		 * Mapper
-		 */
-//		$container->registerService(
-//			'DepositionFilesMapper', function ($c) {
-//			return new DepositionFilesMapper(
-//				$c->query('ServerContainer')
-//				  ->getDatabaseConnection()
-//			);
-//		}
-//		);
-
 		// Translates
 		$container->registerService(
 			'L10N', function($c) {
