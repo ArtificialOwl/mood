@@ -3,7 +3,7 @@
 
 namespace OCA\Mood\Activity;
 
-use OCA\Circles\Model\Share;
+use OCA\Circles\Model\Frame;
 use OCA\Mood\Service\MiscService;
 use OCP\Activity\IEvent;
 use OCP\Activity\IManager;
@@ -59,11 +59,10 @@ class Provider implements IProvider {
 					$this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood.svg'))
 				);
 
-				$share = Share::fromJSON($params['share']);
-				$mood = $share->getItem();
-				$this->parseActivityHeader($event, $share);
+				$frame = Frame::fromJSON($params['share']);
+				$mood = $frame->getPayload();
+				$this->parseActivityHeader($event, $frame);
 				$this->parseMood($event, $mood);
-
 				break;
 
 			default:
@@ -71,7 +70,6 @@ class Provider implements IProvider {
 		}
 
 		return $event;
-
 	}
 
 
@@ -90,11 +88,11 @@ class Provider implements IProvider {
 	}
 
 
-	private function parseActivityHeader(IEvent &$event, Share $share) {
+	private function parseActivityHeader(IEvent &$event, Frame $frame) {
 
 		$this->activityManager->getCurrentUserId();
 
-		if ($share->getAuthor() === $this->activityManager->getCurrentUserId()) {
+		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()) {
 
 			$event->setParsedSubject(
 				$this->l10n->t(
@@ -105,13 +103,13 @@ class Provider implements IProvider {
 					  $this->l10n->t(
 						  'You shared a mood with {circles}'
 					  ),
-					  ['circles' => $this->generateCircleParameter($share)]
+					  ['circles' => $this->generateCircleParameter($frame)]
 
 				  );
 
 		} else {
 
-			$author = $this->generateUserParameter($share->getAuthor());
+			$author = $this->generateUserParameter($frame->getAuthor());
 			$event->setParsedSubject(
 				$this->l10n->t(
 					'%1$s shared a mood with %2$s', [
@@ -125,7 +123,7 @@ class Provider implements IProvider {
 						  '{author} shared a mood with {circles}'
 					  ), [
 						  'author'  => $author,
-						  'circles' => $this->generateCircleParameter($share)
+						  'circles' => $this->generateCircleParameter($frame)
 					  ]
 				  );
 		}
@@ -147,14 +145,14 @@ class Provider implements IProvider {
 	}
 
 
-	private function generateCircleParameter(Share $share) {
+	private function generateCircleParameter(Frame $frame) {
 		return [
 			'type' => 'circle',
-			'id'   => $share->getCircleId(),
-			'name' => $share->getCircleName(),
+			'id'   => $frame->getCircleId(),
+			'name' => $frame->getCircleName(),
 			'link' => \OC::$server->getURLGenerator()
 								  ->linkToRoute('circles.Navigation.navigate')
-					  . '#' . $share->getCircleId()
+					  . '#' . $frame->getCircleId()
 		];
 	}
 

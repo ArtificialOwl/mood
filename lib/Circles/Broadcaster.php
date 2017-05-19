@@ -3,7 +3,7 @@
 namespace OCA\Mood\Circles;
 
 use OCA\Circles\IBroadcaster;
-use OCA\Circles\Model\Share;
+use OCA\Circles\Model\Frame;
 use OCA\Mood\AppInfo\Application;
 use OCA\Mood\Service\MiscService;
 use OCP\Activity\IManager;
@@ -27,19 +27,19 @@ class Broadcaster implements IBroadcaster {
 
 	/**
 	 * @param string $userId
-	 * @param Share $share
+	 * @param Frame $frame
 	 *
 	 * @return bool
 	 */
-	public function broadcast(string $userId, Share $share) {
+	public function broadcast(string $userId, Frame $frame) {
 
 		try {
 			$event = $this->activityManager->generateEvent();
 			$event->setApp('mood');
 			$event->setType('mood');
 			$event->setAffectedUser($userId);
-			$event->setAuthor($share->getAuthor());
-			$event->setSubject('mood_item', ['share' => json_encode($share)]);
+			$event->setAuthor($frame->getAuthor());
+			$event->setSubject('mood_item', ['share' => json_encode($frame->getPayload())]);
 
 			$this->activityManager->publish($event);
 
