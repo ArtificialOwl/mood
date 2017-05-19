@@ -79,7 +79,17 @@ class Provider implements IProvider {
 
 
 	private function parseMood(IEvent &$event, $mood) {
-		$event->setParsedMessage($mood['text']);
+
+		if (key_exists('website', $mood)) {
+			$event->setRichMessage(
+				$mood['text'] . '{opengraph}',
+				['opengraph' => $this->generateOpenGraphParameter('_id_', $mood['website'])]
+			);
+		} else {
+			$event->setParsedMessage($mood['text']);
+		}
+
+
 	}
 
 
@@ -122,153 +132,23 @@ class Provider implements IProvider {
 					  ]
 				  );
 		}
-//		$subjectParameters = $event->getSubjectParameters();
-//			if ($subjectParameters[0] === $this->activityManager->getCurrentUserId()) {
-
-
-//		$this->l10n->t(
-//						'You commented on %1$s', [
-//												   trim($subjectParameters[1], '/'),
-//											   ]
-//					)
-//				)
-//					  ->setRichSubject(
-//						  $this->l10n->t('You commented on {file}'), [
-//																	   'file' => $this->generateFileParameter(
-//																		   $event->getObjectId(),
-//																		   $subjectParameters[1]
-//																	   ),
-//																   ]
-//					  );
 	}
 
-//	/**
-//	 * @param IEvent $event
-//	 *
-//	 * @return IEvent
-//	 * @throws \InvalidArgumentException
-//	 * @since 11.0.0
-//	 */
-//	protected function parseShortVersion(IEvent $event) {
-//		$subjectParameters = $event->getSubjectParameters();
-//
-//		if ($event->getSubject() === 'add_comment_subject') {
-//			if ($subjectParameters[0] === $this->activityManager->getCurrentUserId()) {
-//				$event->setParsedSubject($this->l10n->t('You commented'))
-//					  ->setRichSubject($this->l10n->t('You commented'), []);
-//			} else {
-//				$author = $this->generateUserParameter($subjectParameters[0]);
-//				$event->setParsedSubject($this->l10n->t('%1$s commented', [$author['name']]))
-//					  ->setRichSubject(
-//						  $this->l10n->t('{author} commented'), [
-//																  'author' => $author,
-//															  ]
-//					  );
-//			}
-//		} else {
-//			throw new \InvalidArgumentException();
-//		}
-//
-//		return $event;
-//	}
 
-	/**
-	 * @param IEvent $event
-	 *
-	 * @return IEvent
-	 * @throws \InvalidArgumentException
-	 * @since 11.0.0
-	 */
-	protected function parseLongVersion(IEvent $event) {
-		$subjectParameters = $event->getSubjectParameters();
-
-//		if ($event->getSubject() === 'add_comment_subject') {
-//			if ($subjectParameters[0] === $this->activityManager->getCurrentUserId()) {
-//				$event->setParsedSubject(
-//					$this->l10n->t(
-//						'You commented on %1$s', [
-//												   trim($subjectParameters[1], '/'),
-//											   ]
-//					)
-//				)
-//					  ->setRichSubject(
-//						  $this->l10n->t('You commented on {file}'), [
-//																	   'file' => $this->generateFileParameter(
-//																		   $event->getObjectId(),
-//																		   $subjectParameters[1]
-//																	   ),
-//																   ]
-//					  );
-//			} else {
-//				$author = $this->generateUserParameter($subjectParameters[0]);
-//				$event->setParsedSubject(
-//					$this->l10n->t(
-//						'%1$s commented on %2$s', [
-//													$author['name'],
-//													trim($subjectParameters[1], '/'),
-//												]
-//					)
-//				)
-//					  ->setRichSubject(
-//						  $this->l10n->t('{author} commented on {file}'), [
-//																			'author' => $author,
-//																			'file'   => $this->generateFileParameter(
-//																				$event->getObjectId(
-//																				),
-//																				$subjectParameters[1]
-//																			),
-//																		]
-//					  );
-//			}
-//		} else {
-//			throw new \InvalidArgumentException();
-//		}
-
-		return $event;
-	}
-
-	protected function parseMessage(IEvent $event) {
-		$messageParameters = $event->getMessageParameters();
-		try {
-//			$comment = $this->commentsManager->get((int)$messageParameters[0]);
-//			$message = $comment->getMessage();
-//			$message =
-//				str_replace("\n", '<br />', str_replace(['<', '>'], ['&lt;', '&gt;'], $message));
-//
-//			$mentionCount = 1;
-//			$mentions = [];
-//			foreach ($comment->getMentions() as $mention) {
-//				if ($mention['type'] !== 'user') {
-//					continue;
-//				}
-//
-//				$message = preg_replace(
-//					'/(^|\s)(' . '@' . $mention['id'] . ')(\b)/',
-//					//'${1}' . $this->regexSafeUser($mention['id'], $displayName) . '${3}',
-//					'${1}' . '{mention' . $mentionCount . '}' . '${3}',
-//					$message
-//				);
-//				$mentions['mention' . $mentionCount] = $this->generateUserParameter($mention['id']);
-//				$mentionCount++;
-//			}
-//
-//			$event->setParsedMessage($comment->getMessage())
-//				  ->setRichMessage($message, $mentions);
-		} catch (NotFoundException $e) {
-		}
-	}
-
-	protected function generateFileParameter($id, $path) {
+	private function generateOpenGraphParameter($id, $website) {
 		return [
-			'type' => 'file',
-			'id'   => $id,
-			'name' => basename($path),
-			'path' => $path,
-			'link' => $this->url->linkToRouteAbsolute(
-				'files.viewcontroller.showFile', ['fileid' => $id]
-			),
+			'type'        => 'open-graph',
+			'id'          => $id,
+			'name'       => $website['title'],
+			'description' => $website['description'],
+			'website'     => 'youtube.com',
+			'thumb' => \OC::$server->getURLGenerator()
+								   ->linkToRoute('mood.Tools.binFromExternalImage') . '?url='
+					   . rawurlencode($website['thumb']),
+			'link' => 'https://www.google.com/'
 		];
 	}
+
 
 	private function generateCircleParameter(Share $share) {
 		return [
@@ -278,6 +158,7 @@ class Provider implements IProvider {
 			'link' => 'http://nextcloud/index.php/apps/circles/#' . $share->getCircleId()
 		];
 	}
+
 
 	private function generateUserParameter($uid) {
 		return [

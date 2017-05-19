@@ -31,7 +31,6 @@ namespace OCA\Mood\Service;
 
 
 use OCA\Circles\Api\Circles;
-use OCA\Mood\Circles\Broadcaster;
 use OCP\Activity\IManager;
 
 class MoodService {

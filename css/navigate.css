@@ -69,7 +69,7 @@
 #website_infos .thumb {
 	width: 120px;
 	max-width: 120px;
-	height: 120px;
+	height: auto;
 	max-height: 120px;
 	float: left;
 	margin: 3px 15px 5px 3px;
@@ -83,3 +83,7 @@ INPUT.check {
 	margin-left: 5px;
 	margin-right: 15px;
 }
+
+
+
+

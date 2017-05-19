@@ -33,8 +33,6 @@ class Broadcaster implements IBroadcaster {
 	 */
 	public function broadcast(string $userId, Share $share) {
 
-		$this->miscService->log("_Share: " . var_export($share, true));
-
 		try {
 			$event = $this->activityManager->generateEvent();
 			$event->setApp('mood');
