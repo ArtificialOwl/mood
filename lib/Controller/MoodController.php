@@ -65,6 +65,13 @@ class MoodController extends Controller {
 		$this->miscService = $miscService;
 	}
 
+
+	/**
+	 * @param $circleId
+	 * @param $item
+	 *
+	 * @NoAdminRequired
+	 */
 	public function shareToCircle($circleId, $item) {
 		$this->moodService->shareToCircle($circleId, $item);
 	}

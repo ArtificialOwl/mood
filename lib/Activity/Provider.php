@@ -3,7 +3,7 @@
 
 namespace OCA\Mood\Activity;
 
-use OCA\Circles\Model\Frame;
+use OCA\Circles\Model\SharingFrame;
 use OCA\Mood\Service\MiscService;
 use OCP\Activity\IEvent;
 use OCP\Activity\IManager;
@@ -59,7 +59,12 @@ class Provider implements IProvider {
 					$this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood.svg'))
 				);
 
-				$frame = Frame::fromJSON($params['share']);
+				$frame = SharingFrame::fromJSON($params['share']);
+
+				if ($frame === null)
+				{
+					throw new \InvalidArgumentException();
+				}
 				$mood = $frame->getPayload();
 				$this->parseActivityHeader($event, $frame);
 				$this->parseMood($event, $mood);
@@ -88,7 +93,7 @@ class Provider implements IProvider {
 	}
 
 
-	private function parseActivityHeader(IEvent &$event, Frame $frame) {
+	private function parseActivityHeader(IEvent &$event, SharingFrame $frame) {
 
 		$this->activityManager->getCurrentUserId();
 
@@ -145,7 +150,7 @@ class Provider implements IProvider {
 	}
 
 
-	private function generateCircleParameter(Frame $frame) {
+	private function generateCircleParameter(SharingFrame $frame) {
 		return [
 			'type' => 'circle',
 			'id'   => $frame->getCircleId(),
