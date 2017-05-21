@@ -3,6 +3,7 @@
 
 namespace OCA\Mood\Activity;
 
+use OCA\Circles\Model\FederatedLink;
 use OCA\Circles\Model\SharingFrame;
 use OCA\Mood\Service\MiscService;
 use OCP\Activity\IEvent;
@@ -61,8 +62,7 @@ class Provider implements IProvider {
 
 				$frame = SharingFrame::fromJSON($params['share']);
 
-				if ($frame === null)
-				{
+				if ($frame === null) {
 					throw new \InvalidArgumentException();
 				}
 				$mood = $frame->getPayload();
@@ -89,7 +89,6 @@ class Provider implements IProvider {
 			$event->setParsedMessage($mood['text']);
 		}
 
-
 	}
 
 
@@ -114,7 +113,7 @@ class Provider implements IProvider {
 
 		} else {
 
-			$author = $this->generateUserParameter($frame->getAuthor());
+			$author = $this->generateUserParameter($frame);
 			$event->setParsedSubject(
 				$this->l10n->t(
 					'%1$s shared a mood with %2$s', [
@@ -162,11 +161,21 @@ class Provider implements IProvider {
 	}
 
 
-	private function generateUserParameter($uid) {
+	/**
+	 * @param SharingFrame $frame
+	 *
+	 * @return array
+	 */
+	private function generateUserParameter(SharingFrame $frame) {
+		$host = '';
+		if ($frame->getCloudId() !== null) {
+			$host = '@' . $frame->getCloudId();
+		}
+
 		return [
 			'type' => 'user',
-			'id'   => $uid,
-			'name' => $uid,// FIXME Use display name
+			'id'   => $frame->getAuthor(),
+			'name' => $frame->getAuthor() . $host
 		];
 	}
 }
