@@ -96,7 +96,9 @@ class Provider implements IProvider {
 
 		$this->activityManager->getCurrentUserId();
 
-		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()) {
+		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()
+			&& $frame->getCloudId() === null
+		) {
 
 			$event->setParsedSubject(
 				$this->l10n->t(
