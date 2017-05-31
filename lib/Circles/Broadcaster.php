@@ -31,7 +31,7 @@ class Broadcaster implements IBroadcaster {
 	 *
 	 * @return bool
 	 */
-	public function broadcast(string $userId, SharingFrame $frame) {
+	public function broadcast($userId, SharingFrame $frame) {
 
 		try {
 			$event = $this->activityManager->generateEvent();
