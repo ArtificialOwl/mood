@@ -17,7 +17,7 @@
 	<repository type="git">https://github.com/nextcloud-gmbh/mood.git</repository>
 	<!--<screenshot>https://raw.githubusercontent.com/nextcloud-gmbh/circles/master/screenshots/circlespng</screenshot>-->
 	<dependencies>
-		<nextcloud min-version="12" max-version="12"/>
+		<nextcloud min-version="12" max-version="13"/>
 	</dependencies>
 
 	<activity>

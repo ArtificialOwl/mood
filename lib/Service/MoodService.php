@@ -29,7 +29,7 @@
 namespace OCA\Mood\Service;
 
 
-use OCA\Circles\Api\Circles;
+use OCA\Circles\Api\v1\Circles;
 use OCP\Activity\IManager;
 
 class MoodService {
