@@ -42,7 +42,7 @@ var nav = {
 
 
 	initCircles: function () {
-		circles.searchCircles('all', '', 1, nav.initCirclesResult);
+		circles.listCircles('all', '', 1, nav.initCirclesResult);
 	},
 
 
