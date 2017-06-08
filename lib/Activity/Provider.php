@@ -3,6 +3,7 @@
 
 namespace OCA\Mood\Activity;
 
+use OCA\Circles\Api\v1\Circles;
 use OCA\Circles\Model\FederatedLink;
 use OCA\Circles\Model\SharingFrame;
 use OCA\Mood\Service\MiscService;
@@ -156,9 +157,7 @@ class Provider implements IProvider {
 			'type' => 'circle',
 			'id'   => $frame->getCircleId(),
 			'name' => $frame->getCircleName(),
-			'link' => \OC::$server->getURLGenerator()
-								  ->linkToRoute('circles.Navigation.navigate')
-					  . '#' . $frame->getCircleId()
+			'link' => Circles::generateLink($frame->getCircleId())
 		];
 	}
 
