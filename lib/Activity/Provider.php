@@ -86,7 +86,7 @@ class Provider implements IProvider {
 				['opengraph' => $this->generateOpenGraphParameter('_id_', $mood['website'])]
 			);
 		} else {
-			$event->setParsedMessage($mood['text']);
+			$event->setRichMessage(htmlspecialchars($mood['text']));
 		}
 
 	}
