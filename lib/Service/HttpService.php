@@ -32,16 +32,8 @@ use OCA\Mood\Exceptions\HttpRequestException;
 
 class HttpService {
 
-	/** @var MiscService */
-	private $miscService;
 
-	/**
-	 * ConfigService constructor.
-	 *
-	 * @param MiscService $miscService
-	 */
-	public function __construct(MiscService $miscService) {
-		$this->miscService = $miscService;
+	public function __construct() {
 	}
 
 

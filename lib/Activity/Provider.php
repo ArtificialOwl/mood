@@ -4,9 +4,7 @@
 namespace OCA\Mood\Activity;
 
 use OCA\Circles\Api\v1\Circles;
-use OCA\Circles\Model\FederatedLink;
 use OCA\Circles\Model\SharingFrame;
-use OCA\Mood\Service\MiscService;
 use OCP\Activity\IEvent;
 use OCP\Activity\IManager;
 use OCP\Activity\IProvider;
@@ -14,9 +12,6 @@ use OCP\IL10N;
 use OCP\IURLGenerator;
 
 class Provider implements IProvider {
-
-	/** @var MiscService */
-	protected $miscService;
 
 	/** @var IL10N */
 	protected $l10n;
@@ -27,14 +22,12 @@ class Provider implements IProvider {
 	/** @var IManager */
 	protected $activityManager;
 
-	public function __construct(
-		IURLGenerator $url, IManager $activityManager, IL10N $l10n, MiscService $miscService
-	) {
+	public function __construct(IURLGenerator $url, IManager $activityManager, IL10N $l10n) {
 		$this->url = $url;
 		$this->activityManager = $activityManager;
 		$this->l10n = $l10n;
-		$this->miscService = $miscService;
 	}
+
 
 	/**
 	 * @param string $lang
@@ -58,7 +51,7 @@ class Provider implements IProvider {
 				}
 
 				$event->setIcon(
-					$this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood.svg'))
+					$this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood_black.svg'))
 				);
 
 				$frame = SharingFrame::fromJSON($params['share']);
@@ -101,38 +94,23 @@ class Provider implements IProvider {
 			&& $frame->getCloudId() === null
 		) {
 
-			$event->setParsedSubject(
-				$this->l10n->t(
-					'You shared a mood with %1$s', ['circle1, circle2']
-				)
-			)
-				  ->setRichSubject(
-					  $this->l10n->t(
-						  'You shared a mood with {circles}'
-					  ),
-					  ['circles' => $this->generateCircleParameter($frame)]
+			$event->setRichSubject(
+				$this->l10n->t('You shared a mood with {circles}'),
+				['circles' => $this->generateCircleParameter($frame)]
 
-				  );
+			);
 
 		} else {
 
 			$author = $this->generateUserParameter($frame);
-			$event->setParsedSubject(
+			$event->setRichSubject(
 				$this->l10n->t(
-					'%1$s shared a mood with %2$s', [
-													  $author['name'],
-													  'circle1, circle2'
-												  ]
-				)
-			)
-				  ->setRichSubject(
-					  $this->l10n->t(
-						  '{author} shared a mood with {circles}'
-					  ), [
-						  'author'  => $author,
-						  'circles' => $this->generateCircleParameter($frame)
-					  ]
-				  );
+					'{author} shared a mood with {circles}'
+				), [
+					'author'  => $author,
+					'circles' => $this->generateCircleParameter($frame)
+				]
+			);
 		}
 	}
 
@@ -168,15 +146,18 @@ class Provider implements IProvider {
 	 * @return array
 	 */
 	private function generateUserParameter(SharingFrame $frame) {
-		$host = '';
 		if ($frame->getCloudId() !== null) {
-			$host = '@' . $frame->getCloudId();
+			$name = $frame->getAuthor() . '@' . $frame->getCloudId();
+		} else {
+			$name = \OC::$server->getUserManager()
+								->get($frame->getAuthor())
+								->getDisplayName();
 		}
 
 		return [
 			'type' => 'user',
 			'id'   => $frame->getAuthor(),
-			'name' => $frame->getAuthor() . $host
+			'name' => $name
 		];
 	}
 }

@@ -27,42 +27,14 @@
 
 namespace OCA\Mood\Controller;
 
-use \OCA\Mood\Service\MiscService;
-use \OCA\Mood\Service\ConfigService;
-use OC\AppFramework\Http;
-use OCA\Mood\Service\MoodService;
+use OCA\Circles\Api\v1\Circles;
 use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IRequest;
 
 class MoodController extends Controller {
 
-	/** @var string */
-	private $userId;
-	/** @var IL10N */
-	private $l10n;
-	/** @var MoodService */
-	private $moodService;
-	/** @var MiscService */
-	private $miscService;
-
-	public function __construct(
-		$appName,
-		IRequest $request,
-		$userId,
-		IL10N $l10n,
-		MoodService $moodService,
-		MiscService $miscService
-	) {
+	public function __construct($appName, IRequest $request) {
 		parent::__construct($appName, $request);
-
-		$this->userId = $userId;
-		$this->l10n = $l10n;
-		$this->moodService = $moodService;
-		$this->miscService = $miscService;
 	}
 
 
@@ -73,7 +45,7 @@ class MoodController extends Controller {
 	 * @NoAdminRequired
 	 */
 	public function shareToCircle($circleId, $item) {
-		$this->moodService->shareToCircle($circleId, $item);
+		Circles::shareToCircle($circleId, 'mood', '', $item, 'OCA\Mood\Circles\Broadcaster');
 	}
 
 

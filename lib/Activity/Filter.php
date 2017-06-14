@@ -49,7 +49,7 @@ class Filter implements IFilter {
 	 * @since 11.0.0
 	 */
 	public function getIcon() {
-		return $this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood.svg'));
+		return $this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood_black.svg'));
 	}
 
 	/**

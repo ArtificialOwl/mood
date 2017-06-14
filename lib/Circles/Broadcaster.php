@@ -5,7 +5,6 @@ namespace OCA\Mood\Circles;
 use OCA\Circles\IBroadcaster;
 use OCA\Circles\Model\SharingFrame;
 use OCA\Mood\AppInfo\Application;
-use OCA\Mood\Service\MiscService;
 use OCP\Activity\IManager;
 
 class Broadcaster implements IBroadcaster {
@@ -13,23 +12,18 @@ class Broadcaster implements IBroadcaster {
 	/** @var IManager */
 	private $activityManager;
 
-	/** @var MiscService */
-	private $miscService;
-
-
+	/**
+	 * {@inheritdoc}
+	 */
 	public function init() {
 		$app = new Application();
 		$c = $app->getContainer();
 
 		$this->activityManager = $c->query('ActivityManager');
-		$this->miscService = $c->query('MiscService');
 	}
 
 	/**
-	 * @param string $userId
-	 * @param SharingFrame $frame
-	 *
-	 * @return bool
+	 * {@inheritdoc}
 	 */
 	public function broadcast($userId, SharingFrame $frame) {
 

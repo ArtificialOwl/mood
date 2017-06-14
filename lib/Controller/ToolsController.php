@@ -27,41 +27,23 @@
 
 namespace OCA\Mood\Controller;
 
-use OCA\Mood\Service\HttpService;
-use \OCA\Mood\Service\MiscService;
 use OC\AppFramework\Http;
+use OCA\Mood\Service\HttpService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\FileDisplayResponse;
-use OCP\IL10N;
 use OCP\IRequest;
 
 class ToolsController extends Controller {
 
-	/** @var string */
-	private $userId;
-	/** @var IL10N */
-	private $l10n;
 	/** @var HttpService */
 	private $httpService;
-	/** @var MiscService */
-	private $miscService;
 
-	public function __construct(
-		$appName,
-		IRequest $request,
-		$userId,
-		IL10N $l10n,
-		HttpService $httpService,
-		MiscService $miscService
-	) {
+	public function __construct($appName, IRequest $request, HttpService $httpService) {
 		parent::__construct($appName, $request);
 
-		$this->userId = $userId;
-		$this->l10n = $l10n;
 		$this->httpService = $httpService;
-		$this->miscService = $miscService;
 	}
 
 

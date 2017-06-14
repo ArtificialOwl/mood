@@ -3,19 +3,22 @@
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>mood</id>
 	<name>mood</name>
-	<summary>mood</summary>
-	<description>mood</description>
-	<version>0.1.2</version>
+	<summary>Your mood over the clouds</summary>
+	<description>mood is a small app using **Circles** and **Activity** to broadcast your current mood in a social way.
+
+	Create your circles and federate them for a better visibility.
+	</description>
+	<version>0.2.0</version>
 	<licence>agpl</licence>
 	<author>Maxence Lange</author>
 	<documentation>
-		<admin>https://github.com/nextcloud-gmbh/mood/wiki</admin>
+		<admin>https://github.com/daita/mood/wiki</admin>
 	</documentation>
 	<category>social</category>
-	<website>https://github.com/nextcloud-gmbh/mood</website>
-	<bugs>https://github.com/nextcloud-gmbh/mood/issues</bugs>
-	<repository type="git">https://github.com/nextcloud-gmbh/mood.git</repository>
-	<!--<screenshot>https://raw.githubusercontent.com/nextcloud-gmbh/circles/master/screenshots/circlespng</screenshot>-->
+	<website>https://github.com/daita/mood</website>
+	<bugs>https://github.com/daita/mood/issues</bugs>
+	<repository type="git">https://github.com/daita/mood.git</repository>
+	<screenshot>https://raw.githubusercontent.com/daita/mood/master/screenshots/0.2.0.png</screenshot>-->
 	<dependencies>
 		<nextcloud min-version="12" max-version="13"/>
 	</dependencies>
