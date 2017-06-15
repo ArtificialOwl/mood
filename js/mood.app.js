@@ -25,7 +25,6 @@
 
 /** global: OC */
 /** global: OCA */
-/** global: Notyf */
 
 
 /** global: nav */

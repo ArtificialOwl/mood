@@ -25,7 +25,6 @@
 
 /** global: OC */
 /** global: OCA */
-/** global: Notyf */
 
 /** global: nav */
 /** global: elements */
@@ -64,7 +63,7 @@ var actions = {
 	},
 
 
-	newMoodResult: function (result) {
+	newMoodResult: function () {
 	},
 
 

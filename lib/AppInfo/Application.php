@@ -48,7 +48,7 @@ class Application extends App {
 		$this->appName = $container->query('AppName');
 
 		$container->registerService(
-			'HttpService', function($c) {
+			'HttpService', function() {
 			return new HttpService();
 		}
 		);
