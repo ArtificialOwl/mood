@@ -37,6 +37,12 @@ class HttpService {
 	}
 
 
+	/**
+	 * @param string $url
+	 *
+	 * @return array
+	 * @throws \Exception
+	 */
 	public function getMetaFromWebsite($url) {
 
 		try {
@@ -54,6 +60,13 @@ class HttpService {
 	}
 
 
+	/**
+	 * @param string $url
+	 * @param bool $bin
+	 *
+	 * @return mixed
+	 * @throws HttpRequestException
+	 */
 	public static function file_get_contents_curl($url, $bin = false) {
 		$ch = curl_init();
 
@@ -78,6 +91,11 @@ class HttpService {
 	}
 
 
+	/**
+	 * @param string $str
+	 *
+	 * @return array
+	 */
 	public static function getMetaFromHtml($str) {
 		$pattern = '~<\s*meta\s 
 		(?=[^>]*?
@@ -100,13 +118,56 @@ class HttpService {
 	}
 
 
-	public static function fillWithOpenGraph($tags) {
+	/**
+	 * @param array $tags
+	 *
+	 * @return array
+	 */
+	public static function fillWithOpenGraph(array $tags) {
 		return [
-			'title'       => ((key_exists('og:title', $tags)) ? $tags['og:title'] : ''),
-			'thumb'       => ((key_exists('og:image', $tags)) ? $tags['og:image'] : ''),
-			'description' => ((key_exists('og:description', $tags)) ? $tags['og:description'] : ''),
-			'website'     => ((key_exists('og:site_name', $tags)) ? $tags['og:site_name'] : ''),
+			'title'       => self::fillWithOGTitle($tags),
+			'thumb'       => self::fillWithOGImage($tags),
+			'description' => self::fillWithOGDescription($tags),
+			'website'     => self::fillWithOGSiteName($tags)
 		];
+	}
+
+
+	/**
+	 * @param array $tags
+	 *
+	 * @return mixed|string
+	 */
+	private static function fillWithOGTitle(array $tags) {
+		return ((key_exists('og:title', $tags)) ? $tags['og:title'] : '');
+	}
+
+
+	/**
+	 * @param array $tags
+	 *
+	 * @return string
+	 */
+	private static function fillWithOGImage(array $tags) {
+		return ((key_exists('og:image', $tags)) ? $tags['og:image'] : '');
+	}
+
+	/**
+	 * @param array $tags
+	 *
+	 * @return string
+	 */
+	private static function fillWithOGDescription(array $tags) {
+		return ((key_exists('og:description', $tags)) ? $tags['og:description'] : '');
+	}
+
+	/**
+	 * @param array $tags
+	 *
+	 * @return string
+	 */
+	private static function fillWithOGSiteName(array $tags) {
+		return ((key_exists('og:site_name', $tags)) ? $tags['og:site_name'] : '');
 	}
 
 }

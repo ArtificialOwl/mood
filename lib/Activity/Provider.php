@@ -43,36 +43,45 @@ class Provider implements IProvider {
 			throw new \InvalidArgumentException();
 		}
 
+		$event->setIcon(
+			$this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood_black.svg'))
+		);
+
 		switch ($event->getSubject()) {
 			case 'mood_item':
-				$params = $event->getSubjectParameters();
-				if (!key_exists('share', $params)) {
-					throw new \InvalidArgumentException();
-				}
+				$this->parseMoodItem($event);
 
-				$event->setIcon(
-					$this->url->getAbsoluteURL($this->url->imagePath('mood', 'mood_black.svg'))
-				);
-
-				$frame = SharingFrame::fromJSON($params['share']);
-
-				if ($frame === null) {
-					throw new \InvalidArgumentException();
-				}
-				$mood = $frame->getPayload();
-				$this->parseActivityHeader($event, $frame);
-				$this->parseMood($event, $mood);
-				break;
-
-			default:
-				throw new \InvalidArgumentException();
+				return $event;
 		}
 
-		return $event;
+		throw new \InvalidArgumentException();
 	}
 
 
-	private function parseMood(IEvent &$event, $mood) {
+	/**
+	 * @param IEvent $event
+	 */
+	private function parseMoodItem(IEvent &$event) {
+		$params = $event->getSubjectParameters();
+		if (!key_exists('share', $params)) {
+			throw new \InvalidArgumentException();
+		}
+
+		$frame = SharingFrame::fromJSON($params['share']);
+		if ($frame === null) {
+			throw new \InvalidArgumentException();
+		}
+
+		$this->parseActivityHeader($event, $frame);
+		$this->parseMoodPayload($event, $frame->getPayload());
+	}
+
+
+	/**
+	 * @param IEvent $event
+	 * @param $mood
+	 */
+	private function parseMoodPayload(IEvent &$event, $mood) {
 
 		if (key_exists('website', $mood)) {
 			$event->setRichMessage(
@@ -86,35 +95,35 @@ class Provider implements IProvider {
 	}
 
 
+	/**
+	 * @param IEvent $event
+	 * @param SharingFrame $frame
+	 */
 	private function parseActivityHeader(IEvent &$event, SharingFrame $frame) {
 
-		$this->activityManager->getCurrentUserId();
+		$data = [
+			'author'  => $this->generateUserParameter($frame),
+			'circles' => $this->generateCircleParameter($frame)
+		];
 
 		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()
 			&& $frame->getCloudId() === null
 		) {
+			$event->setRichSubject($this->l10n->t('You shared a mood with {circles}'), $data);
 
-			$event->setRichSubject(
-				$this->l10n->t('You shared a mood with {circles}'),
-				['circles' => $this->generateCircleParameter($frame)]
-
-			);
-
-		} else {
-
-			$author = $this->generateUserParameter($frame);
-			$event->setRichSubject(
-				$this->l10n->t(
-					'{author} shared a mood with {circles}'
-				), [
-					'author'  => $author,
-					'circles' => $this->generateCircleParameter($frame)
-				]
-			);
+			return;
 		}
+
+		$event->setRichSubject($this->l10n->t('{author} shared a mood with {circles}'), $data);
 	}
 
 
+	/**
+	 * @param $id
+	 * @param $website
+	 *
+	 * @return array
+	 */
 	private function generateOpenGraphParameter($id, $website) {
 		return [
 			'type'        => 'open-graph',
@@ -130,6 +139,11 @@ class Provider implements IProvider {
 	}
 
 
+	/**
+	 * @param SharingFrame $frame
+	 *
+	 * @return array
+	 */
 	private function generateCircleParameter(SharingFrame $frame) {
 		return [
 			'type' => 'circle',
@@ -146,6 +160,7 @@ class Provider implements IProvider {
 	 * @return array
 	 */
 	private function generateUserParameter(SharingFrame $frame) {
+
 		if ($frame->getCloudId() !== null) {
 			$name = $frame->getAuthor() . '@' . $frame->getCloudId();
 		} else {

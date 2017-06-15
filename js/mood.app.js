@@ -1,5 +1,5 @@
 /*
- * Circles - Bring cloud-users closer together.
+ * Mood
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -26,14 +26,13 @@
 /** global: OC */
 /** global: OCA */
 
-
 /** global: nav */
 /** global: actions */
 /** global: elements */
 
-var circles = OCA.Circles.api;
-var api = OCA.Mood.api;
-var curr = {
+const circles = OCA.Circles.api;
+const api = OCA.Mood.api;
+let curr = {
 	mood: '',
 	circles: [],
 	shares: [],
@@ -42,10 +41,7 @@ var curr = {
 	websiteInfos: {},
 
 	isShared: function (share) {
-		if ($.inArray(share, curr.shares) > -1) {
-			return true;
-		}
-		return false;
+		return ($.inArray(share, curr.shares) > -1);
 	},
 
 	addShare: function (share) {
@@ -55,7 +51,7 @@ var curr = {
 	},
 
 	remShare: function (share) {
-		var e = curr.shares.indexOf(share);
+		const e = curr.shares.indexOf(share);
 		if (e > -1) {
 			curr.shares.splice(e, 1);
 		}
@@ -70,38 +66,33 @@ var curr = {
 	}
 };
 
+const Navigation = function () {
+
+	$.extend(Navigation.prototype, curr);
+	$.extend(Navigation.prototype, nav);
+	$.extend(Navigation.prototype, elements);
+	$.extend(Navigation.prototype, actions);
+
+	this.init();
+};
+
+Navigation.prototype = {
+
+	init: function () {
+		elements.integrateMoodToActivity();
+		elements.initElements();
+		elements.initUI();
+		elements.initExperienceMood();
+
+		nav.initNavigation();
+		nav.initCircles();
+	}
+};
+
+
+OCA.Mood.Navigation = Navigation;
 
 $(document).ready(function () {
-
-	/**
-	 * @constructs Navigation
-	 */
-	var Navigation = function () {
-
-		$.extend(Navigation.prototype, curr);
-		$.extend(Navigation.prototype, nav);
-		$.extend(Navigation.prototype, elements);
-		$.extend(Navigation.prototype, actions);
-
-		this.init();
-	};
-
-
-	Navigation.prototype = {
-
-		init: function () {
-			elements.integrateMoodToActivity();
-			elements.initElements();
-			elements.initUI();
-			elements.initExperienceMood();
-
-			nav.initNavigation();
-			nav.initCircles();
-		}
-	};
-
-	OCA.Mood.Navigation = Navigation;
 	OCA.Mood.navigation = new Navigation();
-
 });
 

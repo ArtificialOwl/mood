@@ -31,6 +31,8 @@ use OCA\Mood\Controller\MoodController;
 use OCA\Mood\Controller\ToolsController;
 use OCA\Mood\Service\HttpService;
 use OCP\AppFramework\App;
+use OCP\AppFramework\IAppContainer;
+use OCP\Notification\IApp;
 use OCP\Util;
 
 class Application extends App {
@@ -47,41 +49,62 @@ class Application extends App {
 		$container = $this->getContainer();
 		$this->appName = $container->query('AppName');
 
+		$this->registerCore($container);
+		$this->registerServices($container);
+		$this->registerControllers($container);
+	}
+
+
+	/**
+	 * @param IAppContainer $container
+	 */
+	public function registerServices(IAppContainer $container) {
+
 		$container->registerService(
 			'HttpService', function() {
 			return new HttpService();
 		}
 		);
+	}
 
-		/**
-		 * Controllers
-		 */
+
+	/**
+	 * @param IAppContainer $container
+	 */
+	public function registerControllers(IAppContainer $container) {
+
 		$container->registerService(
-			'MoodController', function($c) {
+			'MoodController', function(IAppContainer $c) {
 			return new MoodController($c->query('AppName'), $c->query('Request'));
 		}
 		);
 
 
 		$container->registerService(
-			'ToolsController', function($c) {
+			'ToolsController', function(IAppContainer $c) {
 			return new ToolsController(
 				$c->query('AppName'), $c->query('Request'), $c->query('HttpService')
 			);
 		}
 		);
 
+	}
 
-		// Translates
+
+	/**
+	 * @param IAppContainer $container
+	 */
+	public function registerCore(IAppContainer $container) {
+
 		$container->registerService(
-			'L10N', function($c) {
+			'L10N', function(IAppContainer $c) {
 			return $c->query('ServerContainer')
 					 ->getL10N($c->query('AppName'));
 		}
 		);
 
 		$container->registerService(
-			'ActivityManager', function($c) {
+			'ActivityManager', function(IAppContainer $c) {
 			return $c->query('ServerContainer')
 					 ->getActivityManager();
 		}
@@ -89,6 +112,9 @@ class Application extends App {
 	}
 
 
+	/**
+	 *
+	 */
 	public function registerToActivity() {
 		if (!\OCP\App::isEnabled('circles')) {
 			\OC::$server->getLogger()
