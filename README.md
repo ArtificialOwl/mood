@@ -1,6 +1,7 @@
 # Mood
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/daita/mood/badges/quality-score.png?b=master&)](https://scrutinizer-ci.com/g/daita/mood/?branch=master)
+[![Scrutinizer Build Test](https://scrutinizer-ci.com/g/daita/mood/badges/build.png?b=master&)](https://scrutinizer-ci.com/g/daita/mood/?branch=master)
 
 **Your mood over the clouds.**
 
