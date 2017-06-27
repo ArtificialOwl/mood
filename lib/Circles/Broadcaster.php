@@ -25,7 +25,7 @@ class Broadcaster implements IBroadcaster {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function broadcast($userId, SharingFrame $frame) {
+	public function createShareToUser(SharingFrame $frame, $userId) {
 
 		try {
 			$event = $this->activityManager->generateEvent();
@@ -42,5 +42,44 @@ class Broadcaster implements IBroadcaster {
 			return false;
 		}
 	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function deleteShareToUser(SharingFrame $frame, $userId) {
+		return true;
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function editShareToUser(SharingFrame $frame, $userId) {
+		return true;
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function createShareToCircle(SharingFrame $frame) {
+		return true;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function deleteShareToCircle(SharingFrame $frame) {
+		return true;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function editShareToCircle(SharingFrame $frame) {
+		return true;
+	}
+
 
 }
