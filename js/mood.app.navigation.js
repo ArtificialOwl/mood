@@ -50,7 +50,7 @@ var nav = {
 		curr.circles = [];
 		$.each(result.data, function (k, item) {
 			curr.circles.push({
-				id: item.id,
+				id: item.unique_id,
 				name: item.name,
 				type: item.type,
 				owner: item.owner.user_id,
