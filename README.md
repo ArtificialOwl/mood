@@ -8,14 +8,10 @@
 ![](https://raw.githubusercontent.com/daita/mood/master/screenshots/0.2.0.png)
 
 
-Mood will allow your cloud-users to socially share their mood. It will add an header to the Activity App.
+**mood** use the **Activity** and **Circles** apps to make the perfect social media tool for your Nextcloud.
 
-This app will need:
-- Nextcloud 12
-- [Circles](https://github.com/nextcloud/circles) (from the app store)
-- [Activity](https://github.com/nextcloud/activity) (from the app store)
+💬 With **mood**, you can instantly share a short text with other users on your instance: it can be a status update, a link, an information or anything you want.  
+You don't have to share with everyone: thanks to the **Circles** app, you decide who can see your moods 🔒  
+If you want to connect with other instances, you can federate your Circles with them. 
 
-
-**Mood is beta. This project is mostly here to test Circles' API.**
-
-
+Link your _circles_ with remote clouds and your messages will be broadcast all over the mesh!🚀  

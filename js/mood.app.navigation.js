@@ -52,7 +52,7 @@ var nav = {
 			curr.circles.push({
 				id: item.unique_id,
 				name: item.name,
-				type: item.type,
+				type: item.type_string,
 				owner: item.owner.user_id,
 				level: item.user.level_string
 			});

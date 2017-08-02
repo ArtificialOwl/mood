@@ -80,6 +80,4 @@ class Broadcaster implements IBroadcaster {
 	public function editShareToCircle(SharingFrame $frame) {
 		return true;
 	}
-
-
 }

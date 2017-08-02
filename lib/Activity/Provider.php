@@ -4,6 +4,7 @@
 namespace OCA\Mood\Activity;
 
 use OCA\Circles\Api\v1\Circles;
+use OCA\Circles\Model\Circle;
 use OCA\Circles\Model\SharingFrame;
 use OCP\Activity\IEvent;
 use OCP\Activity\IManager;
@@ -102,8 +103,8 @@ class Provider implements IProvider {
 	private function parseActivityHeader(IEvent &$event, SharingFrame $frame) {
 
 		$data = [
-			'author'  => $this->generateUserParameter($frame),
-			'circles' => $this->generateCircleParameter($frame)
+			'author'  => Circles::generateUserParameter($frame),
+			'circles' => Circles::generateCircleParameter($frame)
 		];
 
 		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()
@@ -114,7 +115,12 @@ class Provider implements IProvider {
 			return;
 		}
 
-		$event->setRichSubject($this->l10n->t('{author} shared a mood with {circles}'), $data);
+		if ($frame->getCircleType() === Circle::CIRCLES_PERSONAL) {
+			$event->setRichSubject($this->l10n->t('{author} shared a mood with you'), $data);
+		} else {
+			$event->setRichSubject($this->l10n->t('{author} shared a mood with {circles}'), $data);
+		}
+
 	}
 
 
@@ -139,40 +145,4 @@ class Provider implements IProvider {
 	}
 
 
-	/**
-	 * @param SharingFrame $frame
-	 *
-	 * @return array
-	 */
-	private function generateCircleParameter(SharingFrame $frame) {
-		return [
-			'type' => 'circle',
-			'id'   => $frame->getCircleId(),
-			'name' => $frame->getCircleName(),
-			'link' => Circles::generateLink($frame->getCircleId())
-		];
-	}
-
-
-	/**
-	 * @param SharingFrame $frame
-	 *
-	 * @return array
-	 */
-	private function generateUserParameter(SharingFrame $frame) {
-
-		if ($frame->getCloudId() !== null) {
-			$name = $frame->getAuthor() . '@' . $frame->getCloudId();
-		} else {
-			$name = \OC::$server->getUserManager()
-								->get($frame->getAuthor())
-								->getDisplayName();
-		}
-
-		return [
-			'type' => 'user',
-			'id'   => $frame->getAuthor(),
-			'name' => $name
-		];
-	}
 }
