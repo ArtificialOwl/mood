@@ -107,20 +107,37 @@ class Provider implements IProvider {
 			'circles' => Circles::generateCircleParameter($frame)
 		];
 
-		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()
-			&& $frame->getCloudId() === null
-		) {
-			$event->setRichSubject($this->l10n->t('You shared a mood with {circles}'), $data);
-
+		if ($this->parseActivityHeaderAsAuthor($event, $frame, $data)) {
 			return;
 		}
 
 		if ($frame->getCircleType() === Circle::CIRCLES_PERSONAL) {
 			$event->setRichSubject($this->l10n->t('{author} shared a mood with you'), $data);
-		} else {
-			$event->setRichSubject($this->l10n->t('{author} shared a mood with {circles}'), $data);
+
+			return;
 		}
 
+		$event->setRichSubject($this->l10n->t('{author} shared a mood with {circles}'), $data);
+	}
+
+	/**
+	 * @param IEvent $event
+	 * @param SharingFrame $frame
+	 * @param array $data
+	 *
+	 * @return bool
+	 */
+	private function parseActivityHeaderAsAuthor(IEvent &$event, SharingFrame $frame, array $data) {
+
+		if ($frame->getAuthor() === $this->activityManager->getCurrentUserId()
+			&& $frame->getCloudId() === null
+		) {
+			$event->setRichSubject($this->l10n->t('You shared a mood with {circles}'), $data);
+
+			return true;
+		}
+
+		return false;
 	}
 
 
