@@ -3,6 +3,8 @@
 namespace OCA\Mood\Circles;
 
 use OCA\Circles\IBroadcaster;
+use OCA\Circles\Model\Circle;
+use OCA\Circles\Model\Member;
 use OCA\Circles\Model\SharingFrame;
 use OCA\Mood\AppInfo\Application;
 use OCP\Activity\IManager;
@@ -22,16 +24,36 @@ class Broadcaster implements IBroadcaster {
 		$this->activityManager = $c->query('ActivityManager');
 	}
 
+
 	/**
 	 * {@inheritdoc}
 	 */
-	public function createShareToUser(SharingFrame $frame, $userId) {
+	public function end() {
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function createShareToMember(SharingFrame $frame, Member $member) {
+		switch ($member->getType()) {
+			case Member::TYPE_USER:
+				return $this->generateLocalEvent($frame, $member);
+
+			case Member::TYPE_MAIL:
+				return $this->sendMailEvent();
+		}
+
+		return false;
+	}
+
+
+	private function generateLocalEvent(SharingFrame $frame, Member $member) {
 
 		try {
 			$event = $this->activityManager->generateEvent();
 			$event->setApp('mood');
 			$event->setType('mood');
-			$event->setAffectedUser($userId);
+			$event->setAffectedUser($member->getUserId());
 			$event->setAuthor($frame->getAuthor());
 			$event->setSubject('mood_item', ['share' => json_encode($frame)]);
 
@@ -44,10 +66,14 @@ class Broadcaster implements IBroadcaster {
 	}
 
 
+	private function sendMailEvent() {
+		return false;
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
-	public function deleteShareToUser(SharingFrame $frame, $userId) {
+	public function deleteShareToMember(SharingFrame $frame, Member $member) {
 		return true;
 	}
 
@@ -55,7 +81,7 @@ class Broadcaster implements IBroadcaster {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function editShareToUser(SharingFrame $frame, $userId) {
+	public function editShareToMember(SharingFrame $frame, Member $member) {
 		return true;
 	}
 
@@ -63,21 +89,21 @@ class Broadcaster implements IBroadcaster {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function createShareToCircle(SharingFrame $frame) {
+	public function createShareToCircle(SharingFrame $frame, Circle $circle) {
 		return true;
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function deleteShareToCircle(SharingFrame $frame) {
+	public function deleteShareToCircle(SharingFrame $frame, Circle $circle) {
 		return true;
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function editShareToCircle(SharingFrame $frame) {
+	public function editShareToCircle(SharingFrame $frame, Circle $circle) {
 		return true;
 	}
 }
