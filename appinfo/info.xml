@@ -4,15 +4,16 @@
 	<id>mood</id>
 	<name>mood</name>
 	<summary>Your mood over the clouds</summary>
-	<description>
+	<description><![CDATA[**mood** use the **Activity** and **Circles** apps to make the perfect social media tool for your Nextcloud.
 
-		**mood** use the **Activity** and **Circles** apps to make the perfect social media tool for your Nextcloud.
+💬 With **mood**, you can instantly share a short text with other users on your instance: it can be a status update, a link, an information or anything you want.
+You don't have to share with everyone: thanks to the **Circles** app, you decide who can see your moods 🔒
 
-		💬 With **mood**, you can instantly share a short text with other users on your instance: it can be a status update, a link, an information or anything you want.
-		You don't have to share with everyone: thanks to the **Circles** app, you decide who can see your moods 🔒
-		If you want to connect with other instances, you can federate your Circles with them. Link your _circles_ with remote clouds and your messages will be broadcast all over the mesh!🚀
+If you want to connect with other instances, you can federate your Circles with them.
+Link your _circles_ with remote clouds and your messages will be broadcast all over the mesh!🚀
+]]>
 	</description>
-	<version>0.3.0</version>
+	<version>0.3.2</version>
 	<licence>agpl</licence>
 	<author>Maxence Lange</author>
 	<documentation>
@@ -21,8 +22,9 @@
 	<category>social</category>
 	<website>https://github.com/daita/mood</website>
 	<bugs>https://github.com/daita/mood/issues</bugs>
-	<repository type="git">https://github.com/daita/mood.git</repository>
-	<screenshot>https://raw.githubusercontent.com/daita/mood/master/screenshots/0.2.0.png</screenshot>-->
+	<repository>https://github.com/daita/mood.git</repository>
+	<screenshot>
+		https://raw.githubusercontent.com/daita/mood/master/screenshots/0.2.0.png</screenshot>
 	<dependencies>
 		<nextcloud min-version="12" max-version="13"/>
 	</dependencies>

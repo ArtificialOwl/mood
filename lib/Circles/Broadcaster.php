@@ -47,6 +47,16 @@ class Broadcaster implements IBroadcaster {
 	}
 
 
+	/**
+	 * generateLocalEvent();
+	 *
+	 * generate an event using the ActivityManager.
+	 *
+	 * @param SharingFrame $frame
+	 * @param Member $member
+	 *
+	 * @return bool
+	 */
 	private function generateLocalEvent(SharingFrame $frame, Member $member) {
 
 		try {
