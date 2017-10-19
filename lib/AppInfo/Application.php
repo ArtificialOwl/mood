@@ -27,6 +27,7 @@
 
 namespace OCA\Mood\AppInfo;
 
+use OCA\Circles\Api\v1\Circles;
 use OCA\Mood\Controller\MoodController;
 use OCA\Mood\Controller\ToolsController;
 use OCA\Mood\Service\HttpService;
@@ -126,7 +127,7 @@ class Application extends App {
 		\OC::$server->getEventDispatcher()
 					->addListener(
 						'OCA\Activity::loadAdditionalScripts', function() {
-						Util::addScript('circles', 'circles.v1');
+						Circles::addJavascriptAPI();
 						Util::addScript('mood', 'mood');
 						Util::addScript('mood', 'mood.app');
 						Util::addScript('mood', 'mood.app.elements');

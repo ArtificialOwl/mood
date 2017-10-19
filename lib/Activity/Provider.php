@@ -111,7 +111,7 @@ class Provider implements IProvider {
 			return;
 		}
 
-		if ($frame->getCircleType() === Circle::CIRCLES_PERSONAL) {
+		if ($frame->getCircle()->getType() === Circle::CIRCLES_PERSONAL) {
 			$event->setRichSubject($this->l10n->t('{author} shared a mood with you'), $data);
 
 			return;

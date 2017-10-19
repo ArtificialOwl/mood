@@ -30,7 +30,7 @@
 /** global: actions */
 /** global: elements */
 
-const circles = OCA.Circles.api;
+const circles_api = OCA.Circles.api;
 const api = OCA.Mood.api;
 let curr = {
 	mood: '',
