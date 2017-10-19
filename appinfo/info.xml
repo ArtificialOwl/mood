@@ -13,7 +13,7 @@ If you want to connect with other instances, you can federate your Circles with 
 Link your _circles_ with remote clouds and your messages will be broadcast all over the mesh!🚀
 ]]>
 	</description>
-	<version>0.3.2</version>
+	<version>0.3.3</version>
 	<licence>agpl</licence>
 	<author>Maxence Lange</author>
 	<documentation>
