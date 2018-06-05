@@ -8,6 +8,7 @@ OC.L10N.register(
     "{author} shared a mood with {circles}" : "{author} teilte seine Stimmung mit {circles}",
     "You shared a mood with {circles}" : "Du hast Deine Stimmung mit {circles} geteilt",
     "A social <strong>mood</strong> is shared" : "Eine <strong>Stimmung</strong> wurde geteilt",
-    "mood" : "Stimmung"
+    "mood" : "Stimmung",
+    "Your mood over the clouds" : "Deine Stimmung über den Wolken"
 },
 "nplurals=2; plural=(n != 1);");
