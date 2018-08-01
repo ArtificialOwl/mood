@@ -40,6 +40,10 @@ var actions = {
 			website: curr.websiteInfos
 		};
 
+		if (text === '' && curr.websiteInfos.website === undefined) {
+			return;
+		}
+
 		elements.websiteInfos.hide(300);
 		elements.moodText.val('');
 		curr.requestingInfos = false;
