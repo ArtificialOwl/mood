@@ -1,3 +1,5 @@
+_Note: **mood** is deprecated and replaced with the **Social** app in Nextcloud 15_
+
 # Mood
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/daita/mood/badges/quality-score.png?b=master&)](https://scrutinizer-ci.com/g/daita/mood/?branch=master)
