@@ -1,12 +1,12 @@
 { "translations": {
-    "New mood" : "Nuevo mood",
-    "Share with ..." : "Compartir con ...",
-    "Share your mood" : "Comparta su mood",
-    "{author} shared a mood with you" : "{author} compartió un mood contigo",
-    "{author} shared a mood with {circles}" : "{author} compartió un mood con {circles}",
-    "You shared a mood with {circles}" : "Compartió un mood con {circles}",
+    "New mood" : "Nuevo estado de ánimo",
+    "Share with ..." : "Compartir con...",
+    "Share your mood" : "Comparte tu estado de ánimo",
+    "{author} shared a mood with you" : "{author} ha compartido un estado de ánimo contigo",
+    "{author} shared a mood with {circles}" : "{author} ha compartido un estado de ánimo con {circles}",
+    "You shared a mood with {circles}" : "Has compartido un estado de ánimo con {circles}",
     "A social <strong>mood</strong> is shared" : "Se ha compartido un <strong>mood</strong> social",
     "mood" : "mood",
-    "Your mood over the clouds" : "Su mood en las nubes"
+    "Your mood over the clouds" : "Tu estado de ánimo en las nubes"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
