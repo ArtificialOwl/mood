@@ -28,7 +28,7 @@ Link your _circles_ with remote clouds and your messages will be broadcast all o
 	<screenshot>
 		https://raw.githubusercontent.com/daita/mood/master/screenshots/0.2.0.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="12" max-version="14"/>
+		<nextcloud min-version="12" max-version="15"/>
 	</dependencies>
 
 	<activity>
