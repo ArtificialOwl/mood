@@ -6,7 +6,7 @@
 	<summary>Your mood over the clouds</summary>
 	<description><![CDATA[**mood** use the **Activity** and **Circles** apps to make the perfect social media tool for your Nextcloud.
 
-_Note: **mood** is deprecated and replaced with the **Social** app in Nextcloud 15_
+_Note: **mood** is deprecated and not maintained anymore. Please consider switching to the **Social** app._
 
 💬 With **mood**, you can instantly share a short text with other users on your instance: it can be a status update, a link, an information or anything you want.
 You don't have to share with everyone: thanks to the **Circles** app, you decide who can see your moods 🔒
@@ -15,7 +15,7 @@ If you want to connect with other instances, you can federate your Circles with 
 Link your _circles_ with remote clouds and your messages will be broadcast all over the mesh!🚀
 ]]>
 	</description>
-	<version>0.4.1</version>
+	<version>0.5.0</version>
 	<licence>agpl</licence>
 	<author>Maxence Lange</author>
 	<documentation>
@@ -28,7 +28,7 @@ Link your _circles_ with remote clouds and your messages will be broadcast all o
 	<screenshot>
 		https://raw.githubusercontent.com/daita/mood/master/screenshots/0.2.0.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="12" max-version="15"/>
+		<nextcloud min-version="16" max-version="17"/>
 	</dependencies>
 
 	<activity>

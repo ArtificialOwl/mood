@@ -39,7 +39,6 @@ class Provider implements IProvider {
 	 * @since 11.0.0
 	 */
 	public function parse($lang, IEvent $event, IEvent $previousEvent = null) {
-
 		if ($event->getApp() !== 'mood') {
 			throw new \InvalidArgumentException();
 		}
@@ -83,16 +82,16 @@ class Provider implements IProvider {
 	 * @param $mood
 	 */
 	private function parseMoodPayload(IEvent &$event, $mood) {
-
 		if (key_exists('website', $mood)) {
 			$event->setRichMessage(
 				$mood['text'] . '{opengraph}',
 				['opengraph' => $this->generateOpenGraphParameter('_id_', $mood['website'])]
 			);
+			$event->setParsedMessage($mood['text']);
 		} else {
 			$event->setRichMessage(htmlspecialchars($mood['text']));
+			$event->setParsedMessage(htmlspecialchars($mood['text']));
 		}
-
 	}
 
 
@@ -111,13 +110,16 @@ class Provider implements IProvider {
 			return;
 		}
 
-		if ($frame->getCircle()->getType() === Circle::CIRCLES_PERSONAL) {
+		if ($frame->getCircle()
+				  ->getType() === Circle::CIRCLES_PERSONAL) {
 			$event->setRichSubject($this->l10n->t('{author} shared a mood with you'), $data);
+			$event->setParsedSubject($this->l10n->t('{author} shared a mood with you', $data));
 
 			return;
 		}
 
 		$event->setRichSubject($this->l10n->t('{author} shared a mood with {circles}'), $data);
+		$event->setParsedSubject($this->l10n->t('{author} shared a mood with {circles}', $data));
 	}
 
 	/**
@@ -133,6 +135,7 @@ class Provider implements IProvider {
 			&& $frame->getCloudId() === null
 		) {
 			$event->setRichSubject($this->l10n->t('You shared a mood with {circles}'), $data);
+			$event->setParsedSubject($this->l10n->t('You shared a mood with {circles}', $data));
 
 			return true;
 		}
