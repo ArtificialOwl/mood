@@ -1,17 +1,35 @@
 app_name=mood
 
-project_dir=$(CURDIR)/../$(app_name)
+project_dir=$(CURDIR)
 build_dir=$(CURDIR)/build/artifacts
 appstore_dir=$(build_dir)/appstore
 source_dir=$(build_dir)/source
 sign_dir=$(build_dir)/sign
 package_name=$(app_name)
 cert_dir=$(HOME)/.nextcloud/certificates
+github_account=nextcloud
+branch=master
 version+=0.4.1
 
 all: appstore
 
-release: appstore create-tag
+release: appstore github-release github-upload
+
+github-release:
+	github-release release \
+		--user $(github_account) \
+		--repo $(app_name) \
+		--target $(branch) \
+		--tag v$(version) \
+		--name "$(app_name) v$(version)"
+
+github-upload:
+	github-release upload \
+		--user $(github_account) \
+		--repo $(app_name) \
+		--tag v$(version) \
+		--name "$(app_name)-$(version).tar.gz" \
+		--file $(build_dir)/$(app_name)-$(version).tar.gz
 
 create-tag:
 	git tag -s -a v$(version) -m "Tagging the $(version) release."
