@@ -1,6 +1,15 @@
 OC.L10N.register(
     "mood",
     {
-    "Share with ..." : "Del med…"
+    "New mood" : "Nyt humør",
+    "Share with ..." : "Del med…",
+    "Share your mood" : "Vis dit humør",
+    "{author} shared a mood with you" : "{author} har delt sit humør med dig",
+    "{author} shared a mood with {circles}" : "{author} har delt sit humør med {circles}",
+    "You shared a mood with {circles}" : "Du har delt dit humør med {circles}",
+    "A social <strong>mood</strong> is shared" : "har delt et social <strong>humør</strong> ",
+    "mood" : "humør",
+    "Your mood over the clouds" : "Dit humør i skyerne",
+    "**mood** use the **Activity** and **Circles** apps to make the perfect social media tool for your Nextcloud.\n\n_Note: **mood** is deprecated and not maintained anymore. Please consider switching to the **Social** app._\n\n💬 With **mood**, you can instantly share a short text with other users on your instance: it can be a status update, a link, an information or anything you want.\nYou don't have to share with everyone: thanks to the **Circles** app, you decide who can see your moods 🔒\n\nIf you want to connect with other instances, you can federate your Circles with them.\nLink your _circles_ with remote clouds and your messages will be broadcast all over the mesh!🚀" : "**humør** benytter **Aktivitet** og **circler** apps til at lave det perfekte sociale medie værktøj i din Nextcloud.\n\n_Note: **humør** bliver ikke vedligeholdt mere. Overvej venligst at skifte til **Social** app._\n\n💬 Med **humør**, kan du nemt dele en kort tekst med andre brugere på samme server: det kan være en status opdatering, et link, en information eller andet efter behov.\nDu behøver ikke dele med alle: takket være **Circler** app'en, klan du vælge hvem der kan se dit humør🔒\n\nHvis du vil kobles på andre servere, kan du føderere dine cirkler med dem.\nlink dine _cirkler_ til afsides clouds, og for at dine meddelelser udbredes over hele netværket!🚀"
 },
 "nplurals=2; plural=(n != 1);");
