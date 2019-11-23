@@ -2,7 +2,7 @@ OC.L10N.register(
     "mood",
     {
     "New mood" : "Neue Stimmung",
-    "Share with ..." : "Teilen mit…",
+    "Share with ..." : "Teilen mit …",
     "Share your mood" : "Teile Deine Stimmung",
     "{author} shared a mood with you" : "{author} teilte seine Stimmung mit Dir",
     "{author} shared a mood with {circles}" : "{author} teilte seine Stimmung mit {circles}",
