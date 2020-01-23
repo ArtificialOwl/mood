@@ -6,7 +6,7 @@ OC.L10N.register(
     "Share your mood" : "Udostępnij swój nastrój",
     "{author} shared a mood with you" : "{author} udostępnił swój nastrój z Tobą",
     "{author} shared a mood with {circles}" : "{author} udostępnił swój nastrój z {circles}",
-    "You shared a mood with {circles}" : "Udostępniłeś/-aś swój nastrój z {circles}",
+    "You shared a mood with {circles}" : "Udostępniłeś swój nastrój z {circles}",
     "A social <strong>mood</strong> is shared" : "Społecznościowy <strong>nastrój</strong> został udostępniony",
     "mood" : "nastrój",
     "Your mood over the clouds" : "Twój nastrój w chmurach",
